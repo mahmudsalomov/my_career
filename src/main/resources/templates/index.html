@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+
+</head>
+<body>
+
+<input placeholder="username" id="username">
+<input placeholder="password" id="password">
+<button onclick="login()">Submit</button>
+
+
+<button onclick="tekshir()">Tekshir</button>
+</body>
+
+<script>
+    function login() {
+        let username=document.getElementById("username").value;
+        let password=document.getElementById("password").value;
+
+        axios.post("/api/auth/login",{
+            username:username,
+            password:password
+        })
+        .then(function (res) {
+            localStorage.setItem("TOKEN",res.data.token)
+            console.log(res)
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+
+    }
+    
+    function tekshir() {
+        axios.get("/api/auth/me",{headers:{
+            Authorization:"Bearer "+localStorage.getItem("TOKEN")
+            }})
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+    }
+</script>
+
+</html>
