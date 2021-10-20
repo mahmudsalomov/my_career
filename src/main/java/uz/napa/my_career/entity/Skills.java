@@ -9,13 +9,18 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = ("skills"))
-public class SkillsEntity {
+public class Skills {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = ("skillName"))
-    private String skillName;
+    private String name;
+    @Column(columnDefinition = "text")
+    private String description;
+
+    @ManyToOne
+    private SkillCategory category;
+
 
 
 }
