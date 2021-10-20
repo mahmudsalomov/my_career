@@ -23,8 +23,6 @@ public class AuthController {
         return ResponseEntity.status(resToken!=null?200:401).body(resToken);
     }
 
-
-
     @GetMapping("/me")
     public HttpEntity<?> me(@CurrentUser User user){
         if (user!=null){

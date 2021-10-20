@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MyCareer - General </title>
+    <meta charset="utf-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A premium admin dashboard template by Mannatthemes" name="description"/>
+    <meta content="Mannatthemes" name="author"/>
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="http://www.mycareer.uz/images/logo.png">
+    <link href="http://www.mycareer.uz/plugins/jquery-steps/jquery.steps.css" rel="stylesheet" />
+    <link href="http://www.mycareer.uz/plugins/ion-rangeslider/ion.rangeSlider.css" rel="stylesheet" />
+    <link href="http://www.mycareer.uz/plugins/rating/themes/rating.css" rel="stylesheet" />
+    <!-- App css -->
+    <link href="http://www.mycareer.uz/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+    <link href="http://www.mycareer.uz/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link href="http://www.mycareer.uz/css/metisMenu.min.css" rel="stylesheet" type="text/css"/>
+    <link href="http://www.mycareer.uz/css/style.css" rel="stylesheet" type="text/css"/>
+
+
+    <style>
+        img.my_lazy_load {
+            background-image: url(http://www.mycareer.uz/images/my_images/loading.gif);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+<!-- Top Bar Start -->
+<!-- Top Bar Start -->
+<div class="topbar">/home/samandar/Desktop/Napa Automotive/MyCareer/MyCareer/src/main/resources/templates
+
+    <!-- LOGO -->
+    <div class="topbar-left">
+        <a href="http://www.mycareer.uz/home" class="logo">
+                    <span>
+                        <img src="http://www.mycareer.uz/images/logo.png" alt=" "  width="80" height="80" >
+                    </span>
+
+        </a>
+    </div>
+    <!--end logo-->
+    <!-- Navbar -->
+    <nav class="navbar-custom">
+        <ul class="list-unstyled topbar-nav float-right mb-0">
+            <li class="hidden-sm">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="javascript: void(0);" role="button"
+                   aria-haspopup="false" aria-expanded="false">
+                    English
+                    <img src="http://www.mycareer.uz/images/flags/en_flag.jpg" class="ml-2" height="16" alt=""/>
+
+                    <i class="mdi mdi-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="http://www.mycareer.uz/lang/uz" id="uz"><span>Uzbek</span><img src="http://www.mycareer.uz/images/flags/uz_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>        <a class="dropdown-item" href="http://www.mycareer.uz/lang/en" id="en"><span>English</span><img src="http://www.mycareer.uz/images/flags/en_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>        <a class="dropdown-item" href="http://www.mycareer.uz/lang/ru" id="ru"><span>Russian</span><img src="http://www.mycareer.uz/images/flags/ru_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>    </div>
+            </li>
+
+            <li class="dropdown notification-list">
+                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
+                   aria-haspopup="false" aria-expanded="false">
+                    <i class="dripicons-bell noti-icon"></i>
+                    <span class="badge badge-danger badge-pill noti-icon-badge">0</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+                    <!-- item-->
+                    <h6 class="dropdown-item-text">
+                        Notifications (0)
+                    </h6>
+                    <div class="slimscroll notification-list">
+
+
+
+                        <!-- item-->
+
+                        <!-- item-->
+
+                    </div>
+                    <!-- All-->
+                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                        View all <i class="fi-arrow-right"></i>
+                    </a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                   aria-haspopup="false" aria-expanded="false">
+
+                    <img src="http://www.mycareer.uz/storage/images/128/128/User/placeholder.jpg" alt="No image" class=" rounded-circle"/>
+                    <span class="ml-1 nav-user-name hidden-sm"> adminadmin <i class="mdi mdi-chevron-down"></i> </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+
+                    <a class="dropdown-item" href="http://www.mycareer.uz/login/locked">
+                        <i class="dripicons-lock text-muted mr-2"></i> Lock screen</a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="http://www.mycareer.uz/logout"
+                       onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
+                        <i class="dripicons-exit text-muted mr-2"></i> Logout</a>
+                    <form id="logout-form" action="http://www.mycareer.uz/logout" method="GET" style="display: none;">
+                        <input type="hidden" name="_token" value="oVsDXqwBcjK0PiBDOYa3qA4TK8wYsHN1fb3oKHTy">                        <input type="hidden" name="_method" value="GET">                    </form>
+                </div>
+            </li>
+        </ul><!--end topbar-nav-->
+
+        <ul class="list-unstyled topbar-nav mb-0">
+            <li>
+                <button class="button-menu-mobile nav-link waves-effect waves-light">
+                    <i class="dripicons-menu nav-icon"></i>
+                </button>
+            </li>
+            <li class="hide-phone app-search">
+                <form role="search" class="">
+                    <input type="text" placeholder="Search..." class="form-control">
+                    <a href=""><i class="fas fa-search"></i></a>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <!-- end navbar-->
+</div>
+<!-- Top Bar End -->
+<!-- Top Bar End -->
+
+<div class="page-wrapper">
+    <!-- Left Sidenav -->
+    <!-- Left Sidenav -->
+    <div class="left-sidenav">
+        <div class="main-icon-menu">
+            <nav class="nav">
+                <a href="#MetricaAnalytic_student" class="nav-link" data-toggle="tooltip-custom" data-placement="top" title=""
+                   data-original-title="General">
+                    <svg class="nav-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M437.333 32H74.667C51.198 32 32 51.197 32 74.666v282.667C32 380.802 51.198 400 74.667 400h138.666l-42.666 48v32h170.666v-32l-42.666-48h138.666C460.802 400 480 380.802 480 357.333V74.666C480 51.197 460.802 32 437.333 32zm0 288H74.667V74.666h362.666V320z" style="enable-background:new 0 0 512 512;" xml:space="preserve"></path>
+                    </svg>
+                </a>
+                <a href="#MetricaOthers" class="nav-link" data-toggle="tooltip-custom" data-placement="top" title=""
+                   data-original-title="About">
+                    <svg class="nav-svg" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M256 48C141.2 48 48 141.2 48 256s93.2 208 208 208 208-93.2 208-208S370.8 48 256 48zm21 312h-42V235h42v125zm0-166h-42v-42h42v42z"></path>
+                    </svg>
+                </a><!--end MetricaOthers-->
+            </nav><!--end nav-->
+        </div><!--end main-icon-menu-->
+
+        <div class="main-menu-inner">
+            <div class="menu-body slimscroll">
+                <div id="MetricaAnalytic_student" class="main-icon-menu-pane  active ">
+                    <div class="title-box">
+                        <h6 class="menu-title">General</h6>
+                    </div>
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/dashboard"><i
+                                class="dripicons-meter"></i>Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/profile"><i
+                                class="dripicons-user"></i>Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/get_create_resume"><i
+                                class="dripicons-document"></i>Create Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/resume"><i
+                                class="dripicons-document"></i>Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/events"><i
+                                class="dripicons-calendar"></i>Events</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/vacancies"><i
+                                class="dripicons-user-id"></i>Vacancies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/projects"><i
+                                class="dripicons-jewel"></i>Project</a></li>
+                    </ul>
+                </div>
+                <div id="MetricaAnalytic_employer" class="main-icon-menu-pane  ">
+                    <div class="title-box">
+                        <h6 class="menu-title">General</h6>
+                    </div>
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/dashboard"><i
+                                class="dripicons-meter"></i>Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/profile"><i
+                                class="dripicons-user"></i>Profile</a></li>
+
+
+
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/events"><i
+                                class="dripicons-calendar"></i>Events</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/vacancies"><i
+                                class="dripicons-user-id"></i>Vacancies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/projects"><i
+                                class="dripicons-jewel"></i>Project</a></li>
+                    </ul>
+                </div><!-- end Analytic -->
+                <div id="MetricaOthers" class="main-icon-menu-pane ">
+                    <div class="title-box">
+                        <h6 class="menu-title">About</h6>
+                    </div>
+                    <ul class="nav metismenu" id="main_menu_side_nav">
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/about_us"><i
+                                class="dripicons-user"></i>About us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/development-skills"><i
+                                class="dripicons-user-id"></i>Development skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/juridic-advices"><i
+                                class="dripicons-user-id"></i>Juridic advices</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/tranings"><i
+                                class="dripicons-lightbulb"></i>Training</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/teachings"><i
+                                class="dripicons-article"></i>Teaching</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/blogs"><i
+                                class="dripicons-blog"></i>Blogs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/galleries"><i
+                                class="dripicons-photo-group"></i>Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/faqs"><i
+                                class="dripicons-question"></i>Faq</a></li>
+                        <!--end nav-item-->
+                    </ul><!--end nav-->
+                </div><!-- end Others -->
+            </div><!--end menu-body-->
+        </div><!-- end main-menu-inner-->
+    </div>
+    <!-- end left-sidenav-->
+    <!-- end left-sidenav-->
+
+    <!-- Page Content-->
+    <div class="page-content">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-right">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="http://www.mycareer.uz/about_us">MyCareer</a></li>
+                                <li class="breadcrumb-item"><a href="http://www.mycareer.uz/about_us">General</a></li>
+                                <li class="breadcrumb-item active">Create Resume</li>
+
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Create Resume</h4>
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div>
+
+
+
+            <!-- end page title end breadcrumb -->
+            <!-- Page Content-->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+                                <h3>Personal Details</h3>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="first_name" class="col-lg-3 col-form-label">Firstname</label>
+                                                <div class="col-lg-9">
+                                                    <input id="first_name" name="first_name" type="text" class="form-control"
+                                                           value="">
+                                                </div>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <!--end col-->
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="phone" class="col-lg-3 col-form-label">Mobile No.</label>
+                                                <div class="col-lg-9">
+                                                    <input id="phone" name="phone" type="text" class="form-control"
+                                                           value="">
+                                                </div>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="last_name" class="col-lg-3 col-form-label">Lastname</label>
+                                                <div class="col-lg-9">
+                                                    <input id="last_name" name="last_name" type="text" class="form-control"
+                                                           value="">
+                                                </div>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <!--end col-->
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="email" class="col-lg-3 col-form-label">Email Address</label>
+                                                <div class="col-lg-9">
+                                                    <input id="email" name="email" type="text" class="form-control"
+                                                           value="admin@admin.com">
+                                                </div>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="address" name="address" class="col-lg-3 col-form-label">Address</label>
+                                                <div class="col-lg-9">
+                                                    <input id="address" name="address" type="text" class="form-control"
+                                                           value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <!--end fieldset-->
+
+
+                                <h3>Skills</h3>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h4 class="mt-0 header-title">Programming skills</h4>
+                                                    <div class="repeater-default">
+                                                        <div data-repeater-list="skills">
+                                                            <div data-repeater-item="">
+                                                                <div class="form-group row d-flex align-items-end">
+
+                                                                    <div class="col-sm-4">
+                                                                        <label class="control-label">Programming skill</label>
+                                                                        <input type="text" name="skills[0][model]" value="HTML"
+                                                                               class="form-control">
+                                                                    </div>
+                                                                    <!--end col-->
+                                                                    <div class="col-sm-4">
+                                                                        <div class="p-3">
+                                                                            <label class="control-label">Level (%)</label>
+
+                                                                            <input type="text" id="range_01"
+                                                                                   name="skills[0][level]">
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end col-->
+
+                                                                    <div class="col-sm-2">
+                                                                <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                                                                    <span class="far fa-trash-alt mr-1"></span>
+                                                                </span>
+                                                                    </div>
+                                                                    <!--end col-->
+                                                                </div>
+                                                                <!--end row-->
+                                                            </div>
+                                                            <!--end /div-->
+                                                        </div>
+                                                        <!--end repet-list-->
+                                                        <div class="form-group mb-0 row">
+                                                            <div class="col-sm-12">
+                                                        <span data-repeater-create="" class="btn btn-secondary">
+                                                            <span class="fas fa-plus"></span> Add
+                                                        </span>
+
+                                                            </div>
+                                                            <!--end col-->
+                                                        </div>
+                                                        <!--end row-->
+                                                    </div>
+                                                    <!--end repeter-->
+                                                </div>
+                                                <!--end card-body-->
+                                            </div>
+                                            <!--end card-->
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row -->
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h4 class="mt-0 header-title">Language</h4>
+                                                    <div class="repeater-default">
+                                                        <div class="form-group mb-0 row">
+                                                            <div class="col-sm-12">
+                                                        <span data-repeater-create="" class="btn btn-secondary">
+                                                            <span class="fas fa-plus"></span> Add
+                                                        </span>
+
+                                                            </div>
+                                                            <!--end col-->
+                                                        </div>
+                                                        <!--end row-->
+                                                        <div data-repeater-list="lang">
+                                                            <div data-repeater-item="">
+                                                                <div class="form-group row d-flex align-items-end">
+                                                                    <div class="col-sm-4">
+                                                                        <label class="control-label">Langugae</label>
+                                                                        <input type="text" name="lang[0][model]" value="English"
+                                                                               class="form-control">
+                                                                    </div>
+                                                                    <!--end col-->
+                                                                    <div class="col-sm-4">
+                                                                        <h5 class="mt-0 mb-4">Level</h5>
+                                                                        <select id="example-css" name="lang[0][level]"
+                                                                                autocomplete="off">
+                                                                            <option value="1" name="lang[0][level]">1</option>
+                                                                            <option value="2" name="lang[0][level]">2</option>
+                                                                            <option value="3" name="lang[0][level]">3</option>
+                                                                            <option value="4" name="lang[0][level]">4</option>
+                                                                            <option value="5" name="lang[0][level]">5</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <!--end col-->
+
+                                                                    <div class="col-sm-1">
+                                                                <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                                                                    <span class="far fa-trash-alt mr-1"></span>
+                                                                </span>
+                                                                    </div>
+                                                                    <!--end col-->
+                                                                </div>
+                                                                <!--end row-->
+                                                            </div>
+                                                            <!--end /div-->
+                                                        </div>
+                                                        <!--end repet-list-->
+
+                                                    </div>
+                                                    <!--end repeter-->
+                                                </div>
+                                                <!--end card-body-->
+                                            </div>
+                                            <!--end card-->
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row -->
+                                </fieldset>
+                                <!--end fieldset-->
+
+                                <h3>Experience</h3>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h4 class="mt-0 header-title">Work experience</h4>
+                                                    <div class="repeater-default">
+                                                        <div data-repeater-list="experience">
+                                                            <div data-repeater-item="">
+                                                                <div class="form-group row d-flex align-items-end">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label">Company</label>
+                                                                        <input type="text" name="experience[0][name]" value="SAP"
+                                                                               class="form-control">
+                                                                    </div>
+                                                                    <!--end col-->
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label">Job title</label>
+                                                                        <input type="text" name="experience[0][title]"
+                                                                               value="Python" class="form-control">
+                                                                    </div>
+                                                                    <!--end col-->
+
+                                                                    <div class="col-sm-2">
+                                                                        <label class="control-label">Start date</label>
+                                                                        <input type="month" name="experience[0][start_month]"
+                                                                               class="form-control">
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+                                                                        <label class="control-label">End date</label>
+                                                                        <input type="month" name="experience[0][end_month]"
+                                                                               value="2021-10"  class="form-control">
+                                                                    </div>
+                                                                    <!--end col-->
+
+                                                                    <div class="col-sm-2">
+                                                                <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                                                                    <span class="far fa-trash-alt mr-1"></span>
+                                                                </span>
+                                                                    </div>
+                                                                    <!--end col-->
+                                                                </div>
+                                                                <!--end row-->
+                                                            </div>
+                                                            <!--end /div-->
+                                                        </div>
+                                                        <!--end repet-list-->
+                                                        <div class="form-group mb-0 row">
+                                                            <div class="col-sm-12">
+                                                        <span data-repeater-create="" class="btn btn-secondary">
+                                                            <span class="fas fa-plus"></span> Add
+                                                        </span>
+
+                                                            </div>
+                                                            <!--end col-->
+                                                        </div>
+                                                        <!--end row-->
+                                                    </div>
+                                                    <!--end repeter-->
+                                                </div>
+                                                <!--end card-body-->
+                                            </div>
+                                            <!--end card-->
+                                        </div> <!-- end col -->
+                                    </div><!-- end row -->
+                                </fieldset>
+                                <!--end fieldset-->
+                                <h3>Confirm Detail</h3>
+                                <fieldset>
+                                    <div class="p-3">
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">I agree with the Terms and Conditions.</span>
+                                        </label>
+                                    </div>
+                                </fieldset>
+                                <!--end fieldset-->
+                            </form>
+                            <!--end form-->
+                        </div>
+                        <!--end card-body-->
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+
+            <!-- end page content -->
+        </div><!-- container -->
+    </div>
+</div>
+<!-- end page-wrapper -->
+<!-- jQuery  -->
+
+
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/metisMenu.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/waves.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/plugins/jquery-steps/jquery.steps.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/pages/jquery.form-wizard.init.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/plugins/ion-rangeslider/ion.rangeSlider.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/pages/jquery.rangeslider.init.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/plugins/rating/jquery.barrating.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/pages/jquery.rating.init.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/plugins/repeater/jquery.repeater.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/pages/jquery.form-repeater.js"></script>
+<!-- App js -->
+
+<script type="text/javascript" src="http://www.mycareer.uz/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
+<script>
+    // $(function() {
+    //     $("img.my_lazy_load").lazy({
+    //         effect: "fadeIn",
+    //         effectTime: 2000,
+    //         threshold: 0,
+    //         placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
+    //     });
+    // });
+    /*$(function() {
+        $('.my_lazy_load').lazy({
+            placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
+        });
+    });*/
+</script>
+
+<script>
+
+    //change user profile picture
+    $(document).ready(function (e) {
+
+        /*$('#imageUploadForm').on('submit',(function(e) {
+            console.log("submit called");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            e.preventDefault();
+            $.ajax({
+                type:"post",
+                data:new FormData(this),
+                dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
+                success:function(data){
+                    console.log("data received:"+data);
+                    $('#original').attr('src', 'public/tmp_images/thumbnail/'+ data.name);
+                    //$('#thumbImg').attr('src', 'public/tmp_images/thumbnail/'+ data.name);
+                },
+                error: function(data){
+                    console.log("My error"+data);
+                }
+            });
+        }));*/
+
+        $('#photo_name').on('change',(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "http://www.mycareer.uz/upload-image",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type : 'post',
+                async:true,
+                data:new FormData(document.getElementById("imageUploadForm")).append('enctype', "multipart/form-data"),
+                contentType: false,
+                cache: false,
+                processData: false
+            });
+            document.forms['imageUploadForm'].submit();
+        }));
+
+
+    });
+
+</script>
+
+
+
+</body>
+</html>

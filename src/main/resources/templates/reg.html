@@ -1,0 +1,211 @@
+<meta charset="utf-8"/>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="A premium admin dashboard template by Mannatthemes" name="description"/>
+<meta content="Mannatthemes" name="author"/>
+
+<!-- App favicon -->
+<link rel="shortcut icon" href="http://www.mycareer.uz/images/logo.png">
+<!-- App css -->
+<link href="http://www.mycareer.uz/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="http://www.mycareer.uz/css/icons.css" rel="stylesheet" type="text/css"/>
+<link href="http://www.mycareer.uz/css/metisMenu.min.css" rel="stylesheet" type="text/css"/>
+<link href="http://www.mycareer.uz/css/style.css" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+
+<style>
+    img.my_lazy_load {
+        background-image: url(http://www.mycareer.uz/images/my_images/loading.gif);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+</style>
+
+
+</head>
+<body class="account-body accountbg">
+<!-- Log In page -->
+<div class="row vh-100 ">
+    <div class="col-12 align-self-center">
+        <div class="auth-page">
+            <div class="card auth-card shadow-lg">
+                <div class="card-body">
+                    <div class="px-3">
+                        <!-- <div class="auth-logo-box">
+                            <a href="../analytics/analytics-index.html" class="logo logo-admin"><img src="../assets/images/logo-sm.png" height="55" alt="logo" class="auth-logo"></a>
+                        </div> --><!--end auth-logo-box-->
+
+                        <div class="text-center auth-logo-text">
+                            <h4 class="mt-0 mb-3 mt-5">Register form</h4>
+                            <p class="text-muted mb-0">Sign up with</p>
+                        </div> <!--end auth-logo-text-->
+
+                        <form method="POST" class="form-horizontal auth-form my-4" action="http://www.mycareer.uz/register">
+                            <input type="hidden" name="_token" value="YuTgD5rTYeYp979FQ1YLXBVbQrz28vxtoctZtqwA">
+                            <input type="hidden" name="_method" value="POST">
+                            <div class="form-group row mt-4">
+                                <div class="col-sm-12">
+                                    <div class="custom-control custom-radio custom-control-inline ">
+                                        <input type="radio" value="4" class="custom-control-input" id="defaultInline1" name="role" checked>
+                                        <label class="custom-control-label" for="defaultInline1">Student</label>
+                                    </div>
+
+                                    <!-- Default inline 2-->
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" value="2" class="custom-control-input" id="defaultInline2" name="role">
+                                        <label class="custom-control-label" for="defaultInline2">Employer</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <div class="input-group mb-3">
+                                        <span class="auth-form-icon">
+                                            <i class="dripicons-user"></i>
+                                        </span>
+                                    <input type="text" name="username" class="form-control " id="username" placeholder="Enter username" value="" required  autofocus>
+                                </div>
+                            </div><!--end form-group-->
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <div class="input-group mb-3">
+                                        <span class="auth-form-icon">
+                                            <i class="dripicons-mail"></i>
+                                        </span>
+                                    <input type="email" class="form-control " id="email" placeholder="Enter Email" name="email" value="" required >
+                                </div>
+                            </div> <!--end form-group-->
+                            <div class="form-group">
+                                <label for="userpassword">Password</label>
+                                <div class="input-group mb-3">
+                                        <span class="auth-form-icon">
+                                            <i class="dripicons-lock"></i>
+                                        </span>
+                                    <input type="password" class="form-control " name="password" id="userpassword" placeholder="Enter password" required >
+                                </div>
+                            </div><!--end form-group-->
+
+                            <!-- <div class="form-group">
+                                <label for="conf_password">Confirm Password</label>
+                                <div class="input-group mb-3">
+                                    <span class="auth-form-icon">
+                                        <i class="dripicons-lock-open"></i>
+                                    </span>
+                                    <input type="password" class="form-control" id="conf_password" placeholder="Enter Confirm Password">
+                                </div>
+                          </div> --><!--end form-group-->
+
+
+
+                            <!-- <div class="form-group row mt-4">
+                                <div class="col-sm-12">
+                                    <div class="custom-control custom-switch switch-success">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitchSuccess">
+                                        <label class="custom-control-label text-muted" for="customSwitchSuccess">By registering you agree to the Frogetor <a href="#" class="text-primary">Terms of Use</a></label>
+                                    </div>
+                                </div> --><!--end col-->
+                            <!-- </div> --><!--end form-group-->
+                            <div class="form-group mb-0 row">
+                                <div class="col-12 mt-2">
+
+                                    <button class="btn btn-primary btn-round btn-block waves-effect waves-light" type="submit">Create account <i class="fas fa-sign-in-alt ml-1"></i></button>
+                                </div><!--end col-->
+                            </div> <!--end form-group-->
+                        </form><!--end form-->
+                    </div><!--end /div-->
+
+                    <div class="m-3 text-center text-muted">
+                        <p class="">Already have an account ? <a href="/login" class="text-primary ml-2">Log in</a></p>
+                    </div>
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end auth-card-->
+    </div><!--end col-->
+</div><!--end row-->
+<!-- End Log In page -->
+<!-- jQuery  -->
+
+
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/metisMenu.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/waves.min.js"></script>
+<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/jquery.slimscroll.min.js"></script>
+<!-- App js -->
+
+<script type="text/javascript" src="http://www.mycareer.uz/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
+<script>
+    // $(function() {
+    //     $("img.my_lazy_load").lazy({
+    //         effect: "fadeIn",
+    //         effectTime: 2000,
+    //         threshold: 0,
+    //         placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
+    //     });
+    // });
+    /*$(function() {
+        $('.my_lazy_load').lazy({
+            placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
+        });
+    });*/
+</script>
+
+<script>
+
+    //change user profile picture
+    $(document).ready(function (e) {
+
+        /*$('#imageUploadForm').on('submit',(function(e) {
+            console.log("submit called");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            e.preventDefault();
+            $.ajax({
+                type:"post",
+                data:new FormData(this),
+                dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
+                success:function(data){
+                    console.log("data received:"+data);
+                    $('#original').attr('src', 'public/tmp_images/thumbnail/'+ data.name);
+                    //$('#thumbImg').attr('src', 'public/tmp_images/thumbnail/'+ data.name);
+                },
+                error: function(data){
+                    console.log("My error"+data);
+                }
+            });
+        }));*/
+
+        $('#photo_name').on('change',(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "http://www.mycareer.uz/upload-image",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type : 'post',
+                async:true,
+                data:new FormData(document.getElementById("imageUploadForm")).append('enctype', "multipart/form-data"),
+                contentType: false,
+                cache: false,
+                processData: false
+            });
+            document.forms['imageUploadForm'].submit();
+        }));
+
+
+    });
+
+</script>
+
+</body>
+</html>

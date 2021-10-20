@@ -5,10 +5,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 @org.springframework.stereotype.Controller
 public class Controller {
 
-
     @GetMapping("/")
-    public String index(){
+    public String index() {
+        System.out.println("Main");
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        System.out.println("Log");
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String reg(){
+        System.out.println("reg");
+        return "reg";
     }
 
 }
