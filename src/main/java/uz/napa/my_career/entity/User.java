@@ -30,7 +30,7 @@ public class User implements UserDetails {
 
     private boolean active=true;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     @Override

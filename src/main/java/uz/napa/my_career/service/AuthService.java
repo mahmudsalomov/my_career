@@ -78,21 +78,20 @@ public class AuthService implements UserDetailsService {
         if (optional.isPresent()) {
             throw new ServerBadRequestException("Profile with these username or email exist");
         }
+        Role byRole = roleRepository.getByRole(RoleName.USER);
+        System.out.println(byRole);
         User user = userRepository.save(User
                 .builder()
                 .active(false)
                 .email(dto.getEmail())
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .username(dto.getUsername())
-                .roles(new HashSet<>(Collections.singleton(roleRepository.getByRole(RoleName.USER))))
+                .roles(new HashSet<>(
+                        Collections.singleton(roleRepository.findById((short) 2).orElseThrow())
+                ))
                 .phone("")
                 .build());
 
-        user.setEmail(dto.getEmail());
-        user.setActive(false);
-        user.setRoles(Collections.singleton(roleRepository.getByRole(RoleName.USER)));
-        user.setUsername(dto.getUsername());
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         userRepository.save(user);
 
         String jwt = jwtTokenProvider.generateToken(user);
