@@ -23,6 +23,7 @@ import uz.napa.my_career.repository.UserRepository;
 import uz.napa.my_career.secret.JwtTokenProvider;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 
 
@@ -83,7 +84,7 @@ public class AuthService implements UserDetailsService {
                 .email(dto.getEmail())
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .username(dto.getUsername())
-                .roles(Collections.singleton(roleRepository.getByRole(RoleName.USER)))
+                .roles(new HashSet<>(Collections.singleton(roleRepository.getByRole(RoleName.USER))))
                 .phone("")
                 .build());
 
