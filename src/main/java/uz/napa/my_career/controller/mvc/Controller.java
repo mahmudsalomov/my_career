@@ -7,25 +7,22 @@ public class Controller {
 
     @GetMapping("/")
     public String index() {
-        System.out.println("Main");
         return "index";
     }
 
     @GetMapping("/login")
-    public String login(){
-        System.out.println("Log");
+    public String login() {
         return "login";
     }
 
     @GetMapping("/register")
-    public String reg(){
-        System.out.println("reg");
+    public String reg() {
         return "reg";
     }
 
-   @GetMapping("/create-resume")
-   public String createResume(){
+    @GetMapping("/create-resume")
+    public String createResume() {
         return "create_resume";
-   }
+    }
 
 }

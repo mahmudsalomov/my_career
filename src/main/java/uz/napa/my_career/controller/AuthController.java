@@ -27,7 +27,7 @@ public class AuthController {
     @PostMapping("/registration")
     public HttpEntity<?> register(@RequestBody RegistrationDto dto) {
         authService.registration(dto);
-        return ResponseEntity.ok    ().build();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/validation/{jwt}")

@@ -11,14 +11,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.napa.my_career.dto.RegistrationDto;
+import uz.napa.my_career.entity.Role;
+import uz.napa.my_career.entity.RoleName;
 import uz.napa.my_career.entity.User;
 
 import uz.napa.my_career.exception.ServerBadRequestException;
 import uz.napa.my_career.payload.ResToken;
 import uz.napa.my_career.payload.SignIn;
+import uz.napa.my_career.repository.RoleRepository;
 import uz.napa.my_career.repository.UserRepository;
 import uz.napa.my_career.secret.JwtTokenProvider;
 
+import java.util.Collections;
 import java.util.Optional;
 
 
@@ -28,8 +32,13 @@ public class AuthService implements UserDetailsService {
     UserRepository userRepository;
     JwtTokenProvider jwtTokenProvider;
     AuthenticationManager authenticationManager;
-    PasswordEncoder passwordEncoder;
-    MailSenderService mailSenderService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private MailSenderService mailSenderService;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     public AuthService(UserRepository userRepository, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager) {
@@ -68,11 +77,22 @@ public class AuthService implements UserDetailsService {
         if (optional.isPresent()) {
             throw new ServerBadRequestException("Profile with these username or email exist");
         }
-        User user = new User();
+        User user = userRepository.save(User
+                .builder()
+                .active(false)
+                .email(dto.getEmail())
+                .password(passwordEncoder.encode(dto.getPassword()))
+                .username(dto.getUsername())
+                .roles(Collections.singleton(roleRepository.getByRole(RoleName.USER)))
+                .phone("")
+                .build());
+
         user.setEmail(dto.getEmail());
         user.setActive(false);
+        user.setRoles(Collections.singleton(roleRepository.getByRole(RoleName.USER)));
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        userRepository.save(user);
 
         String jwt = jwtTokenProvider.generateToken(user);
         String link = "http://localhost:8080/api/auth/validate/" + jwt;

@@ -23,7 +23,7 @@
 
     <style>
         img.my_lazy_load {
-            background-image: url(http://www.mycareer.uz/images/my_images/loading.gif);
+            background-image: url(/public/images/my_images/loading.gif);
             background-repeat: no-repeat;
             background-position: 50% 50%;
         }
@@ -47,9 +47,9 @@
 
     <!-- LOGO -->
     <div class="topbar-left">
-        <a href="http://www.mycareer.uz/home" class="logo">
+        <a href="/public/home" class="logo">
                     <span>
-                        <img src="http://www.mycareer.uz/images/logo.png" alt=" " width="80" height="80">
+                        <img src="/public/images/logo.png" alt=" " width="80" height="80">
                     </span>
 
         </a>
@@ -63,12 +63,12 @@
                    href="javascript: void(0);" role="button"
                    aria-haspopup="false" aria-expanded="false">
                     English
-                    <img src="http://www.mycareer.uz/images/flags/en_flag.jpg" class="ml-2" height="16" alt=""/>
+                    <img src="/public/images/flags/en_flag.jpg" class="ml-2" height="16" alt=""/>
 
                     <i class="mdi mdi-chevron-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="http://www.mycareer.uz/lang/uz" id="uz"><span>Uzbek</span><img
+                    <a class="dropdown-item" href="/public/lang/uz" id="uz"><span>Uzbek</span><img
                             src="http://www.mycareer.uz/images/flags/uz_flag.jpg" alt="" class="ml-2 float-right"
                             height="14"/></a> <a class="dropdown-item" href="http://www.mycareer.uz/lang/en"
                                                  id="en"><span>English</span><img
@@ -607,74 +607,7 @@
 
 <script type="text/javascript"
         src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
-<script>
-    // $(function() {
-    //     $("img.my_lazy_load").lazy({
-    //         effect: "fadeIn",
-    //         effectTime: 2000,
-    //         threshold: 0,
-    //         placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
-    //     });
-    // });
-    /*$(function() {
-        $('.my_lazy_load').lazy({
-            placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
-        });
-    });*/
-</script>
 
-<script>
-
-    //change user profile picture
-    $(document).ready(function (e) {
-
-        /*$('#imageUploadForm').on('submit',(function(e) {
-            console.log("submit called");
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            e.preventDefault();
-            $.ajax({
-                type:"post",
-                data:new FormData(this),
-                dataType:'JSON',
-                contentType: false,
-                cache: false,
-                processData: false,
-                success:function(data){
-                    console.log("data received:"+data);
-                    $('#original').attr('src', 'public/tmp_images/thumbnail/'+ data.name);
-                    //$('#thumbImg').attr('src', 'public/tmp_images/thumbnail/'+ data.name);
-                },
-                error: function(data){
-                    console.log("My error"+data);
-                }
-            });
-        }));*/
-
-        $('#photo_name').on('change', (function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "http://www.mycareer.uz/upload-image",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                async: true,
-                data: new FormData(document.getElementById("imageUploadForm")).append('enctype', "multipart/form-data"),
-                contentType: false,
-                cache: false,
-                processData: false
-            });
-            document.forms['imageUploadForm'].submit();
-        }));
-
-
-    });
-
-</script>
 
 
 </body>

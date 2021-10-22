@@ -40,19 +40,21 @@
                             <p class="text-muted mb-0">Sign up with</p>
                         </div> <!--end auth-logo-text-->
 
-                        <form method="POST" class="form-horizontal auth-form my-4" action="http://www.mycareer.uz/register">
+                        <form class="form-horizontal auth-form my-4">
                             <input type="hidden" name="_token" value="YuTgD5rTYeYp979FQ1YLXBVbQrz28vxtoctZtqwA">
                             <input type="hidden" name="_method" value="POST">
                             <div class="form-group row mt-4">
                                 <div class="col-sm-12">
                                     <div class="custom-control custom-radio custom-control-inline ">
-                                        <input type="radio" value="4" class="custom-control-input" id="defaultInline1" name="role" checked>
+                                        <input type="radio" value="4" class="custom-control-input" id="defaultInline1"
+                                               name="role" checked>
                                         <label class="custom-control-label" for="defaultInline1">Student</label>
                                     </div>
 
                                     <!-- Default inline 2-->
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" value="2" class="custom-control-input" id="defaultInline2" name="role">
+                                        <input type="radio" value="2" class="custom-control-input" id="defaultInline2"
+                                               name="role">
                                         <label class="custom-control-label" for="defaultInline2">Employer</label>
                                     </div>
                                 </div>
@@ -63,7 +65,8 @@
                                         <span class="auth-form-icon">
                                             <i class="dripicons-user"></i>
                                         </span>
-                                    <input type="text" name="username" class="form-control " id="username" placeholder="Enter username" value="" required  autofocus>
+                                    <input type="text" name="username" class="form-control " id="username"
+                                           placeholder="Enter username" value="" required autofocus>
                                 </div>
                             </div><!--end form-group-->
                             <div class="form-group">
@@ -72,7 +75,8 @@
                                         <span class="auth-form-icon">
                                             <i class="dripicons-mail"></i>
                                         </span>
-                                    <input type="email" class="form-control " id="email" placeholder="Enter Email" name="email" value="" required >
+                                    <input type="email" class="form-control " id="email" placeholder="Enter Email"
+                                           name="email" value="" required>
                                 </div>
                             </div> <!--end form-group-->
                             <div class="form-group">
@@ -81,41 +85,25 @@
                                         <span class="auth-form-icon">
                                             <i class="dripicons-lock"></i>
                                         </span>
-                                    <input type="password" class="form-control " name="password" id="userpassword" placeholder="Enter password" required >
+                                    <input type="password" class="form-control " name="password" id="userpassword"
+                                           placeholder="Enter password" required>
                                 </div>
                             </div><!--end form-group-->
 
-                            <!-- <div class="form-group">
-                                <label for="conf_password">Confirm Password</label>
-                                <div class="input-group mb-3">
-                                    <span class="auth-form-icon">
-                                        <i class="dripicons-lock-open"></i>
-                                    </span>
-                                    <input type="password" class="form-control" id="conf_password" placeholder="Enter Confirm Password">
-                                </div>
-                          </div> --><!--end form-group-->
-
-
-
-                            <!-- <div class="form-group row mt-4">
-                                <div class="col-sm-12">
-                                    <div class="custom-control custom-switch switch-success">
-                                        <input type="checkbox" class="custom-control-input" id="customSwitchSuccess">
-                                        <label class="custom-control-label text-muted" for="customSwitchSuccess">By registering you agree to the Frogetor <a href="#" class="text-primary">Terms of Use</a></label>
-                                    </div>
-                                </div> --><!--end col-->
-                            <!-- </div> --><!--end form-group-->
                             <div class="form-group mb-0 row">
                                 <div class="col-12 mt-2">
 
-                                    <button class="btn btn-primary btn-round btn-block waves-effect waves-light" type="submit">Create account <i class="fas fa-sign-in-alt ml-1"></i></button>
+                                    <button class="btn btn-primary btn-round btn-block waves-effect waves-light"
+                                            onclick="register()" type="submit">Create account <i
+                                            class="fas fa-sign-in-alt ml-1"></i></button>
                                 </div><!--end col-->
                             </div> <!--end form-group-->
                         </form><!--end form-->
                     </div><!--end /div-->
 
                     <div class="m-3 text-center text-muted">
-                        <p class="">Already have an account ? <a href="/login" class="text-primary ml-2">Log in</a></p>
+                        <p class="">Already have an accopasswordunt ? <a href="/login" class="text-primary ml-2">Log
+                            in</a></p>
                     </div>
                 </div><!--end card-body-->
             </div><!--end card-->
@@ -132,80 +120,31 @@
 <script type="text/javascript" src="/public/js/my_js/metisMenu.min.js"></script>
 <script type="text/javascript" src="/public/js/my_js/waves.min.js"></script>
 <script type="text/javascript" src="/public/js/my_js/jquery.slimscroll.min.js"></script>
-<!-- App js -->
 
+<!-- App js -->
 <script type="text/javascript" src="/public/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
 
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
-<script>
-    // $(function() {
-    //     $("img.my_lazy_load").lazy({
-    //         effect: "fadeIn",
-    //         effectTime: 2000,
-    //         threshold: 0,
-    //         placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
-    //     });
-    // });
-    /*$(function() {
-        $('.my_lazy_load').lazy({
-            placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
-        });
-    });*/
-</script>
 
 <script>
-
-    //change user profile picture
-    $(document).ready(function (e) {
-
-        /*$('#imageUploadForm').on('submit',(function(e) {
-            console.log("submit called");
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            e.preventDefault();
-            $.ajax({
-                type:"post",
-                data:new FormData(this),
-                dataType:'JSON',
-                contentType: false,
-                cache: false,
-                processData: false,
-                success:function(data){
-                    console.log("data received:"+data);
-                    $('#original').attr('src', 'public/tmp_images/thumbnail/'+ data.name);
-                    //$('#thumbImg').attr('src', 'public/tmp_images/thumbnail/'+ data.name);
-                },
-                error: function(data){
-                    console.log("My error"+data);
-                }
-            });
-        }));*/
-
-        $('#photo_name').on('change',(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/public/upload-image",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type : 'post',
-                async:true,
-                data:new FormData(document.getElementById("imageUploadForm")).append('enctype', "multipart/form-data"),
-                contentType: false,
-                cache: false,
-                processData: false
-            });
-            document.forms['imageUploadForm'].submit();
-        }));
-
-
-    });
-
+    function register() {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("userpassword").value;
+        let email = document.getElementById("email").value;
+        axios.post("api/auth/registration", {
+            username: username,
+            password: password,
+            email: email
+        })
+            .then(function (res) {
+                console.log(res)
+            })
+            .catch(function (error){
+                console.log(error)
+            })
+    }
 </script>
-
 </body>
 </html>
