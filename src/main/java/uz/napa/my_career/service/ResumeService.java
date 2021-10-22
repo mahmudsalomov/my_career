@@ -19,11 +19,11 @@ public class ResumeService {
     @Autowired
     private SkillRepository skillRepository;
 
-public ResumeDetail resumeDetail(Long resumeId){
+//public ResumeDetail resumeDetail(Long resumeId){
 
-    Resume resumeEntity = get(resumeId);
+//    Resume resumeEntity = get(resumeId);
 
-    ResumeDetail resumeDetail = new ResumeDetail();
+//    ResumeDetail resumeDetail = new ResumeDetail();
 //    resumeDetail.setFirstName(resumeEntity.getFirstName());
 //    resumeDetail.setLastName(resumeEntity.getLastName());
 //    resumeDetail.setAddress(resumeEntity.getAddress());
@@ -31,8 +31,9 @@ public ResumeDetail resumeDetail(Long resumeId){
 //    resumeDetail.setEmail(resumeEntity.getUser().getEmail());
 //   resumeDetail.setSkillsList(skillRepository.getList);
 
-    return resumeDetail;
-}
+//    return resumeDetail;
+//}
+    
     private Resume get(Long resumeId) {
 
     Optional<Resume> optional =this.resumeRepository.findById(resumeId);
@@ -43,7 +44,7 @@ public ResumeDetail resumeDetail(Long resumeId){
     }
 
 
-    public void create(ResumeCreate resume) {
+    public ResumeCreate create(ResumeCreate resume) {
 
     Resume resumeEntity = new Resume();
     resumeEntity.setFirstName(resume.getFirstName());
@@ -51,12 +52,16 @@ public ResumeDetail resumeDetail(Long resumeId){
     resumeEntity.setPhoneNumber(resume.getPhoneNumber());
     resumeEntity.setAddress(resume.getAddress());
     resumeEntity.setCratedDate(LocalDateTime.now());
+    resumeEntity.setSkills(resume.getSkillsList());
+    resumeEntity.setEducations(resume.getEducations());
+    resumeEntity.setExperiences(resume.getExperienceList());
+    resumeEntity.setActive(false);
 
-
-
-
-
-
-
+    this.resumeRepository.save(resumeEntity);
+    resume.setId(resumeEntity.getId());
+    return resume;
     }
+
+
+
 }

@@ -4,6 +4,7 @@ package uz.napa.my_career.dto.resume;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+import uz.napa.my_career.entity.Education;
 import uz.napa.my_career.entity.Experience;
 import uz.napa.my_career.entity.Skills;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ResumeCreate {
-    private  Integer id;
+    private  Long id;
     @NotBlank
     private String firstName;
     @NotBlank
@@ -30,7 +31,10 @@ public class ResumeCreate {
     @NotNull
     private List<Skills> skillsList;
     @NotNull
+    private List<Education> educations;
+    @NotNull
     private List<Experience> experienceList;
+
 
 
 }

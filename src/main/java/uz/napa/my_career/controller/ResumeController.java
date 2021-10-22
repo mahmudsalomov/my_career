@@ -23,7 +23,4 @@ public class ResumeController {
         return ResponseEntity.ok().build();
     }
 
-
-
-
 }
