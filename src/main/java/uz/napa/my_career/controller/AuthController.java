@@ -30,7 +30,7 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/validation/{jwt}")
+    @GetMapping("/validate/{jwt}")
     public HttpEntity<?> validate(@PathVariable("jwt") String jwt) {
         authService.validation(jwt);
         return ResponseEntity.ok().build();
