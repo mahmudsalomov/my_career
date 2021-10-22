@@ -5,12 +5,12 @@
 <meta content="Mannatthemes" name="author"/>
 
 <!-- App favicon -->
-<link rel="shortcut icon" href="http://www.mycareer.uz/images/logo.png">
+<link rel="shortcut icon" href="/public/images/logo.png">
 <!-- App css -->
-<link href="http://www.mycareer.uz/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<link href="http://www.mycareer.uz/css/icons.css" rel="stylesheet" type="text/css"/>
-<link href="http://www.mycareer.uz/css/metisMenu.min.css" rel="stylesheet" type="text/css"/>
-<link href="http://www.mycareer.uz/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="/public/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="/public/css/icons.css" rel="stylesheet" type="text/css"/>
+<link href="/public/css/metisMenu.min.css" rel="stylesheet" type="text/css"/>
+<link href="/public/css/style.css" rel="stylesheet" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 
 <style>
@@ -126,15 +126,15 @@
 <!-- jQuery  -->
 
 
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/jquery.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/public/js/my_js/jquery.min.js"></script>
+<script type="text/javascript" src="/public/js/my_js/bootstrap.bundle.min.js"></script>
 
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/metisMenu.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/waves.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="/public/js/my_js/metisMenu.min.js"></script>
+<script type="text/javascript" src="/public/js/my_js/waves.min.js"></script>
+<script type="text/javascript" src="/public/js/my_js/jquery.slimscroll.min.js"></script>
 <!-- App js -->
 
-<script type="text/javascript" src="http://www.mycareer.uz/js/app.js"></script>
+<script type="text/javascript" src="/public/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
@@ -188,7 +188,7 @@
         $('#photo_name').on('change',(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "http://www.mycareer.uz/upload-image",
+                url: "/public/upload-image",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },

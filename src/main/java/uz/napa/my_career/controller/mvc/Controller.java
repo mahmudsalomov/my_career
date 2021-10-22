@@ -23,4 +23,9 @@ public class Controller {
         return "reg";
     }
 
+   @GetMapping("/create-resume")
+   public String createResume(){
+        return "create_resume";
+   }
+
 }

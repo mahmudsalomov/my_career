@@ -5,13 +5,13 @@
 <meta content="Mannatthemes" name="author"/>
 
 <!-- App favicon -->
-<link rel="shortcut icon" href="http://mycareer.uz/images/logo.png">
+<link rel="shortcut icon" href="/public/images/logo.png">
 <!-- App css -->
-<link href="http://mycareer.uz/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="/public/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-<link href="http://mycareer.uz/css/icons.css" rel="stylesheet" type="text/css"/>
-<link href="http://mycareer.uz/css/metisMenu.min.css" rel="stylesheet" type="text/css"/>
-<link href="http://mycareer.uz/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="/public/css/icons.css" rel="stylesheet" type="text/css"/>
+<link href="/public/css/metisMenu.min.css" rel="stylesheet" type="text/css"/>
+<link href="/public/css/style.css" rel="stylesheet" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
 
 <style>
@@ -116,7 +116,7 @@
             .then(function (res) {
                 localStorage.setItem("TOKEN", res.data.token)
                 console.log(res)
-                axios.get("/")
+                window.location.href = "/create-resume"
             })
             .catch(function (error) {
                 console.log(error)

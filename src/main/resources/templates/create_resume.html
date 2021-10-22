@@ -10,15 +10,15 @@
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="http://www.mycareer.uz/images/logo.png">
-    <link href="http://www.mycareer.uz/plugins/jquery-steps/jquery.steps.css" rel="stylesheet" />
-    <link href="http://www.mycareer.uz/plugins/ion-rangeslider/ion.rangeSlider.css" rel="stylesheet" />
-    <link href="http://www.mycareer.uz/plugins/rating/themes/rating.css" rel="stylesheet" />
+    <link href="/public/plugins/jquery-steps/jquery.steps.css" rel="stylesheet"/>
+    <link href="/public/plugins/ion-rangeslider/ion.rangeSlider.css" rel="stylesheet"/>
+    <link href="/public/plugins/rating/themes/rating.css" rel="stylesheet"/>
     <!-- App css -->
-    <link href="http://www.mycareer.uz/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-    <link href="http://www.mycareer.uz/css/icons.css" rel="stylesheet" type="text/css"/>
-    <link href="http://www.mycareer.uz/css/metisMenu.min.css" rel="stylesheet" type="text/css"/>
-    <link href="http://www.mycareer.uz/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/metisMenu.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/public/css/style.css" rel="stylesheet" type="text/css"/>
 
 
     <style>
@@ -30,11 +30,17 @@
     </style>
 
 
-
+    <script>
+        function start() {
+           if (!localStorage.getItem("TOKEN")){
+               window.location.href = "http://localhost:8080/login"
+           }
+        }
+    </script>
 
 </head>
 
-<body>
+<body onload="start()">
 <!-- Top Bar Start -->
 <!-- Top Bar Start -->
 <div class="topbar">/home/samandar/Desktop/Napa Automotive/MyCareer/MyCareer/src/main/resources/templates
@@ -43,7 +49,7 @@
     <div class="topbar-left">
         <a href="http://www.mycareer.uz/home" class="logo">
                     <span>
-                        <img src="http://www.mycareer.uz/images/logo.png" alt=" "  width="80" height="80" >
+                        <img src="http://www.mycareer.uz/images/logo.png" alt=" " width="80" height="80">
                     </span>
 
         </a>
@@ -53,7 +59,8 @@
     <nav class="navbar-custom">
         <ul class="list-unstyled topbar-nav float-right mb-0">
             <li class="hidden-sm">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="javascript: void(0);" role="button"
+                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
+                   href="javascript: void(0);" role="button"
                    aria-haspopup="false" aria-expanded="false">
                     English
                     <img src="http://www.mycareer.uz/images/flags/en_flag.jpg" class="ml-2" height="16" alt=""/>
@@ -61,11 +68,19 @@
                     <i class="mdi mdi-chevron-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="http://www.mycareer.uz/lang/uz" id="uz"><span>Uzbek</span><img src="http://www.mycareer.uz/images/flags/uz_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>        <a class="dropdown-item" href="http://www.mycareer.uz/lang/en" id="en"><span>English</span><img src="http://www.mycareer.uz/images/flags/en_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>        <a class="dropdown-item" href="http://www.mycareer.uz/lang/ru" id="ru"><span>Russian</span><img src="http://www.mycareer.uz/images/flags/ru_flag.jpg" alt="" class="ml-2 float-right" height="14"/></a>    </div>
+                    <a class="dropdown-item" href="http://www.mycareer.uz/lang/uz" id="uz"><span>Uzbek</span><img
+                            src="http://www.mycareer.uz/images/flags/uz_flag.jpg" alt="" class="ml-2 float-right"
+                            height="14"/></a> <a class="dropdown-item" href="http://www.mycareer.uz/lang/en"
+                                                 id="en"><span>English</span><img
+                        src="http://www.mycareer.uz/images/flags/en_flag.jpg" alt="" class="ml-2 float-right"
+                        height="14"/></a> <a class="dropdown-item" href="http://www.mycareer.uz/lang/ru" id="ru"><span>Russian</span><img
+                        src="http://www.mycareer.uz/images/flags/ru_flag.jpg" alt="" class="ml-2 float-right"
+                        height="14"/></a></div>
             </li>
 
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#"
+                   role="button"
                    aria-haspopup="false" aria-expanded="false">
                     <i class="dripicons-bell noti-icon"></i>
                     <span class="badge badge-danger badge-pill noti-icon-badge">0</span>
@@ -76,7 +91,6 @@
                         Notifications (0)
                     </h6>
                     <div class="slimscroll notification-list">
-
 
 
                         <!-- item-->
@@ -92,10 +106,12 @@
             </li>
 
             <li class="dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#"
+                   role="button"
                    aria-haspopup="false" aria-expanded="false">
 
-                    <img src="http://www.mycareer.uz/storage/images/128/128/User/placeholder.jpg" alt="No image" class=" rounded-circle"/>
+                    <img src="http://www.mycareer.uz/storage/images/128/128/User/placeholder.jpg" alt="No image"
+                         class=" rounded-circle"/>
                     <span class="ml-1 nav-user-name hidden-sm"> adminadmin <i class="mdi mdi-chevron-down"></i> </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -108,7 +124,8 @@
                        onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                         <i class="dripicons-exit text-muted mr-2"></i> Logout</a>
                     <form id="logout-form" action="http://www.mycareer.uz/logout" method="GET" style="display: none;">
-                        <input type="hidden" name="_token" value="oVsDXqwBcjK0PiBDOYa3qA4TK8wYsHN1fb3oKHTy">                        <input type="hidden" name="_method" value="GET">                    </form>
+                        <input type="hidden" name="_token" value="oVsDXqwBcjK0PiBDOYa3qA4TK8wYsHN1fb3oKHTy"> <input
+                            type="hidden" name="_method" value="GET"></form>
                 </div>
             </li>
         </ul><!--end topbar-nav-->
@@ -138,15 +155,19 @@
     <div class="left-sidenav">
         <div class="main-icon-menu">
             <nav class="nav">
-                <a href="#MetricaAnalytic_student" class="nav-link" data-toggle="tooltip-custom" data-placement="top" title=""
+                <a href="#MetricaAnalytic_student" class="nav-link" data-toggle="tooltip-custom" data-placement="top"
+                   title=""
                    data-original-title="General">
-                    <svg class="nav-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path d="M437.333 32H74.667C51.198 32 32 51.197 32 74.666v282.667C32 380.802 51.198 400 74.667 400h138.666l-42.666 48v32h170.666v-32l-42.666-48h138.666C460.802 400 480 380.802 480 357.333V74.666C480 51.197 460.802 32 437.333 32zm0 288H74.667V74.666h362.666V320z" style="enable-background:new 0 0 512 512;" xml:space="preserve"></path>
+                    <svg class="nav-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 512 512">
+                        <path d="M437.333 32H74.667C51.198 32 32 51.197 32 74.666v282.667C32 380.802 51.198 400 74.667 400h138.666l-42.666 48v32h170.666v-32l-42.666-48h138.666C460.802 400 480 380.802 480 357.333V74.666C480 51.197 460.802 32 437.333 32zm0 288H74.667V74.666h362.666V320z"
+                              style="enable-background:new 0 0 512 512;" xml:space="preserve"></path>
                     </svg>
                 </a>
                 <a href="#MetricaOthers" class="nav-link" data-toggle="tooltip-custom" data-placement="top" title=""
                    data-original-title="About">
-                    <svg class="nav-svg" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <svg class="nav-svg" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 512 512">
                         <path d="M256 48C141.2 48 48 141.2 48 256s93.2 208 208 208 208-93.2 208-208S370.8 48 256 48zm21 312h-42V235h42v125zm0-166h-42v-42h42v42z"></path>
                     </svg>
                 </a><!--end MetricaOthers-->
@@ -164,7 +185,8 @@
                                 class="dripicons-meter"></i>Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/profile"><i
                                 class="dripicons-user"></i>Profile</a></li>
-                        <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/get_create_resume"><i
+                        <li class="nav-item"><a class="nav-link"
+                                                href="http://www.mycareer.uz/student/get_create_resume"><i
                                 class="dripicons-document"></i>Create Resume</a></li>
                         <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/student/resume"><i
                                 class="dripicons-document"></i>Resume</a></li>
@@ -185,7 +207,6 @@
                                 class="dripicons-meter"></i>Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/profile"><i
                                 class="dripicons-user"></i>Profile</a></li>
-
 
 
                         <li class="nav-item"><a class="nav-link" href="http://www.mycareer.uz/events"><i
@@ -248,7 +269,6 @@
             </div>
 
 
-
             <!-- end page title end breadcrumb -->
             <!-- Page Content-->
 
@@ -262,9 +282,11 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="first_name" class="col-lg-3 col-form-label">Firstname</label>
+                                                <label for="first_name"
+                                                       class="col-lg-3 col-form-label">Firstname</label>
                                                 <div class="col-lg-9">
-                                                    <input id="first_name" name="first_name" type="text" class="form-control"
+                                                    <input id="first_name" name="first_name" type="text"
+                                                           class="form-control"
                                                            value="">
                                                 </div>
                                             </div>
@@ -289,7 +311,8 @@
                                             <div class="form-group row">
                                                 <label for="last_name" class="col-lg-3 col-form-label">Lastname</label>
                                                 <div class="col-lg-9">
-                                                    <input id="last_name" name="last_name" type="text" class="form-control"
+                                                    <input id="last_name" name="last_name" type="text"
+                                                           class="form-control"
                                                            value="">
                                                 </div>
                                             </div>
@@ -309,7 +332,6 @@
                                         <!--end col-->
                                     </div>
                                     <!--end row-->
-
 
 
                                     <div class="row">
@@ -340,14 +362,17 @@
                                                                 <div class="form-group row d-flex align-items-end">
 
                                                                     <div class="col-sm-4">
-                                                                        <label class="control-label">Programming skill</label>
-                                                                        <input type="text" name="skills[0][model]" value="HTML"
+                                                                        <label class="control-label">Programming
+                                                                            skill</label>
+                                                                        <input type="text" name="skills[0][model]"
+                                                                               value="HTML"
                                                                                class="form-control">
                                                                     </div>
                                                                     <!--end col-->
                                                                     <div class="col-sm-4">
                                                                         <div class="p-3">
-                                                                            <label class="control-label">Level (%)</label>
+                                                                            <label class="control-label">Level
+                                                                                (%)</label>
 
                                                                             <input type="text" id="range_01"
                                                                                    name="skills[0][level]">
@@ -356,7 +381,8 @@
                                                                     <!--end col-->
 
                                                                     <div class="col-sm-2">
-                                                                <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                                                                <span data-repeater-delete=""
+                                                                      class="btn btn-danger btn-sm">
                                                                     <span class="far fa-trash-alt mr-1"></span>
                                                                 </span>
                                                                     </div>
@@ -407,7 +433,8 @@
                                                                 <div class="form-group row d-flex align-items-end">
                                                                     <div class="col-sm-4">
                                                                         <label class="control-label">Langugae</label>
-                                                                        <input type="text" name="lang[0][model]" value="English"
+                                                                        <input type="text" name="lang[0][model]"
+                                                                               value="English"
                                                                                class="form-control">
                                                                     </div>
                                                                     <!--end col-->
@@ -415,17 +442,23 @@
                                                                         <h5 class="mt-0 mb-4">Level</h5>
                                                                         <select id="example-css" name="lang[0][level]"
                                                                                 autocomplete="off">
-                                                                            <option value="1" name="lang[0][level]">1</option>
-                                                                            <option value="2" name="lang[0][level]">2</option>
-                                                                            <option value="3" name="lang[0][level]">3</option>
-                                                                            <option value="4" name="lang[0][level]">4</option>
-                                                                            <option value="5" name="lang[0][level]">5</option>
+                                                                            <option value="1" name="lang[0][level]">1
+                                                                            </option>
+                                                                            <option value="2" name="lang[0][level]">2
+                                                                            </option>
+                                                                            <option value="3" name="lang[0][level]">3
+                                                                            </option>
+                                                                            <option value="4" name="lang[0][level]">4
+                                                                            </option>
+                                                                            <option value="5" name="lang[0][level]">5
+                                                                            </option>
                                                                         </select>
                                                                     </div>
                                                                     <!--end col-->
 
                                                                     <div class="col-sm-1">
-                                                                <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                                                                <span data-repeater-delete=""
+                                                                      class="btn btn-danger btn-sm">
                                                                     <span class="far fa-trash-alt mr-1"></span>
                                                                 </span>
                                                                     </div>
@@ -462,7 +495,8 @@
 
                                                                     <div class="col-sm-3">
                                                                         <label class="control-label">Company</label>
-                                                                        <input type="text" name="experience[0][name]" value="SAP"
+                                                                        <input type="text" name="experience[0][name]"
+                                                                               value="SAP"
                                                                                class="form-control">
                                                                     </div>
                                                                     <!--end col-->
@@ -476,18 +510,21 @@
 
                                                                     <div class="col-sm-2">
                                                                         <label class="control-label">Start date</label>
-                                                                        <input type="month" name="experience[0][start_month]"
+                                                                        <input type="month"
+                                                                               name="experience[0][start_month]"
                                                                                class="form-control">
                                                                     </div>
                                                                     <div class="col-sm-2">
                                                                         <label class="control-label">End date</label>
-                                                                        <input type="month" name="experience[0][end_month]"
-                                                                               value="2021-10"  class="form-control">
+                                                                        <input type="month"
+                                                                               name="experience[0][end_month]"
+                                                                               value="2021-10" class="form-control">
                                                                     </div>
                                                                     <!--end col-->
 
                                                                     <div class="col-sm-2">
-                                                                <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                                                                <span data-repeater-delete=""
+                                                                      class="btn btn-danger btn-sm">
                                                                     <span class="far fa-trash-alt mr-1"></span>
                                                                 </span>
                                                                     </div>
@@ -549,26 +586,27 @@
 <!-- jQuery  -->
 
 
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/jquery.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/public/js/my_js/jquery.min.js"></script>
+<script type="text/javascript" src="/public/js/my_js/bootstrap.bundle.min.js"></script>
 
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/metisMenu.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/waves.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/js/my_js/jquery.slimscroll.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/plugins/jquery-steps/jquery.steps.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/pages/jquery.form-wizard.init.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/plugins/ion-rangeslider/ion.rangeSlider.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/pages/jquery.rangeslider.init.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/plugins/rating/jquery.barrating.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/pages/jquery.rating.init.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/plugins/repeater/jquery.repeater.min.js"></script>
-<script type="text/javascript" src="http://www.mycareer.uz/pages/jquery.form-repeater.js"></script>
+<script type="text/javascript" src="/public/js/my_js/metisMenu.min.js"></script>
+<script type="text/javascript" src="/public/js/my_js/waves.min.js"></script>
+<script type="text/javascript" src="/public/js/my_js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="/public/plugins/jquery-steps/jquery.steps.min.js"></script>
+<script type="text/javascript" src="/public/pages/jquery.form-wizard.init.js"></script>
+<script type="text/javascript" src="/public/plugins/ion-rangeslider/ion.rangeSlider.min.js"></script>
+<script type="text/javascript" src="/public/pages/jquery.rangeslider.init.js"></script>
+<script type="text/javascript" src="/public/plugins/rating/jquery.barrating.min.js"></script>
+<script type="text/javascript" src="/public/pages/jquery.rating.init.js"></script>
+<script type="text/javascript" src="/public/plugins/repeater/jquery.repeater.min.js"></script>
+<script type="text/javascript" src="/public/pages/jquery.form-repeater.js"></script>
 <!-- App js -->
 
-<script type="text/javascript" src="http://www.mycareer.uz/js/app.js"></script>
+<script type="text/javascript" src="/public/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
 <script>
     // $(function() {
     //     $("img.my_lazy_load").lazy({
@@ -616,16 +654,16 @@
             });
         }));*/
 
-        $('#photo_name').on('change',(function(e) {
+        $('#photo_name').on('change', (function (e) {
             e.preventDefault();
             $.ajax({
                 url: "http://www.mycareer.uz/upload-image",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                type : 'post',
-                async:true,
-                data:new FormData(document.getElementById("imageUploadForm")).append('enctype', "multipart/form-data"),
+                type: 'post',
+                async: true,
+                data: new FormData(document.getElementById("imageUploadForm")).append('enctype', "multipart/form-data"),
                 contentType: false,
                 cache: false,
                 processData: false
@@ -637,7 +675,6 @@
     });
 
 </script>
-
 
 
 </body>

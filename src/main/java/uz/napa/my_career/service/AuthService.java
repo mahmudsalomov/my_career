@@ -8,13 +8,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import uz.napa.my_career.dto.RegistrationDto;
 import uz.napa.my_career.entity.User;
 
+import uz.napa.my_career.exception.ServerBadRequestException;
 import uz.napa.my_career.payload.ResToken;
 import uz.napa.my_career.payload.SignIn;
 import uz.napa.my_career.repository.UserRepository;
 import uz.napa.my_career.secret.JwtTokenProvider;
+
+import java.util.Optional;
 
 
 @Service
@@ -23,6 +28,8 @@ public class AuthService implements UserDetailsService {
     UserRepository userRepository;
     JwtTokenProvider jwtTokenProvider;
     AuthenticationManager authenticationManager;
+    PasswordEncoder passwordEncoder;
+    MailSenderService mailSenderService;
 
     @Autowired
     public AuthService(UserRepository userRepository, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager) {
@@ -54,6 +61,40 @@ public class AuthService implements UserDetailsService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public void registration(RegistrationDto dto) {
+        Optional<User> optional = userRepository.findByUsernameOrEmail(dto.getUsername(), dto.getEmail());
+        if (optional.isPresent()) {
+            throw new ServerBadRequestException("Profile with these username or email exist");
+        }
+        User user = new User();
+        user.setEmail(dto.getEmail());
+        user.setActive(false);
+        user.setUsername(dto.getUsername());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+
+        String jwt = jwtTokenProvider.generateToken(user);
+        String link = "http://localhost:8080/api/auth/validate/" + jwt;
+
+        try {
+            mailSenderService.sendEmail(dto.getEmail(), link);
+        } catch (Exception e) {
+            userRepository.delete(user);
+            throw new ServerBadRequestException("Email not delivered");
+        }
+    }
+
+    public void validation(String jwt) {
+        String userId = jwtTokenProvider.getUserIdFromToken(jwt);
+        Optional<User> optional = userRepository.findById(Long.valueOf(userId));
+        if (optional.isEmpty()) {
+            throw new ServerBadRequestException("User not found");
+        }
+        User user = optional.get();
+        user.setActive(true);
+        userRepository.save(user);
+
     }
 
 //    public ApiResponse searchUser(String search) {
