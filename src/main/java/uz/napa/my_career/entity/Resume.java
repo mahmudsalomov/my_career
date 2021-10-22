@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -39,6 +38,8 @@ public class Resume {
     @ManyToOne
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Skills> skills;
+
+
+
+
 }

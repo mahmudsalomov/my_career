@@ -15,7 +15,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
-public class CreateResume {
+public class ResumeCreate {
     private  Integer id;
     @NotBlank
     private String firstName;
@@ -31,5 +31,6 @@ public class CreateResume {
     private List<Skills> skillsList;
     @NotNull
     private List<Experience> experienceList;
+
 
 }

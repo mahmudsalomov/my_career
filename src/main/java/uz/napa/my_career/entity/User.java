@@ -27,18 +27,11 @@ public class User implements UserDetails {
 
     @Column(unique = true)
     private String username;
+    private String password;
 
     @Column(unique = true)
     private String email;
-    private String password;
-
-    private String firstname;
-    private String lastname;
-
     private String phone;
-
-    @OneToOne
-    private Address address;
 
     private boolean active=true;
 

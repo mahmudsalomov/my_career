@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateResume {
+public class ResumeUpdate {
 
 
 

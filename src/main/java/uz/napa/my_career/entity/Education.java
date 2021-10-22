@@ -20,10 +20,8 @@ public class Education {
     private String schoolName;
     private String direction;
     private String diplomaCode;
-
     private Date startDate;
     private Date endDate;
-
     @ManyToOne
     private Resume resume;
     @OneToOne

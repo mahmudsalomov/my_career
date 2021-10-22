@@ -17,10 +17,10 @@ public class Skills {
     private String name;
     @Column(columnDefinition = "text")
     private String description;
-
     @ManyToOne
     private SkillCategory category;
-
+    @ManyToOne
+    private Resume resume;
 
 
 }
