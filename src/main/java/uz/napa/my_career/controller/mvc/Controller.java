@@ -25,4 +25,9 @@ public class Controller {
         return "create_resume";
     }
 
+    @GetMapping("/validate")
+    public String valid() {
+        return "validation";
+    }
+
 }

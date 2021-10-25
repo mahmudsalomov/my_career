@@ -26,4 +26,6 @@ public class Education {
 
     @ManyToOne
     private Resume resume;
+    @OneToOne
+    private Organization organization;
 }

@@ -18,7 +18,6 @@ public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String companyName;
     private String jobName;
 
     private Date startDate;
@@ -26,7 +25,7 @@ public class Experience {
 
     @ManyToOne
     private Resume resume;
-//    private Da
 
-
+    @OneToOne
+    private Organization organization;
 }

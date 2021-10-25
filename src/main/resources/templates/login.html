@@ -111,11 +111,10 @@
         })
             .then(function (res) {
                 localStorage.setItem("TOKEN", res.data.token)
-                console.log(res)
                 window.location.href = "/create-resume"
             })
-            .catch(function (error) {
-                console.log(error)
+            .catch(function () {
+                window.location.href = "/login"
             })
     }
 
