@@ -30,6 +30,16 @@ public class Resume {
     @ManyToOne
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @Column(name = ("carted_date"))
+    private LocalDateTime cratedDate;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Skills> skills;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Experience> experienceSet;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Education> educationSet;
 }

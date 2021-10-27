@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import uz.napa.my_career.entity.Address;
+import uz.napa.my_career.entity.Education;
 import uz.napa.my_career.entity.Experience;
 import uz.napa.my_career.entity.Skills;
-
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,6 +20,10 @@ public class ResumeDetailDto {
     private String phone;
     private String email;
     private Address address;
-    private List<Skills> skillsList;
-    private List<Experience> experienceList;
+    private LocalDateTime cratedDate;
+    private String aboutMe;
+    private String coverLater;
+    private Set<Skills> skillsList;
+    private Set<Experience> experienceList;
+    private Set<Education> educationList;
 }
