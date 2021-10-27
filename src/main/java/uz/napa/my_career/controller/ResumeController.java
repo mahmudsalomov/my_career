@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uz.napa.my_career.dto.resume.ResumeCreate;
-import uz.napa.my_career.entity.Resume;
+import uz.napa.my_career.dto.resume.ResumeCreateDto;
 import uz.napa.my_career.service.ResumeService;
 
 @RestController
@@ -16,9 +15,9 @@ public class ResumeController {
     private ResumeService resumeService;
 
     @PostMapping("/create")
-    public HttpEntity<?> create(@RequestBody ResumeCreate resume){
+    public HttpEntity<?> create(@RequestBody ResumeCreateDto resume){
 
-        resumeService.create(resume);
+//        resumeService.create(resume);
 
         return ResponseEntity.ok().build();
     }

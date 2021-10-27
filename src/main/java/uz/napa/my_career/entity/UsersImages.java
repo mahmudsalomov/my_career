@@ -16,13 +16,13 @@ public class UsersImages {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = ("file_storage_id"))
+    @Column(name = ("files_storage_id"))
     private Long fileStorageId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = ("userId"),insertable = false, updatable = false)
     private FileStorage fileStorage;
 
-    @Column(name = ("user_id"))
+    @Column(name = ("users_id"))
     private Long userId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = ("fileStorageId"),insertable = false, updatable = false)
