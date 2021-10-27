@@ -89,20 +89,10 @@ public class AuthService implements UserDetailsService {
                 .roles(new HashSet<>(
                         Collections.singleton(roleRepository.findById((short) 2).orElseThrow())
                 ))
-                .phone("")
                 .build());
 
         userRepository.save(user);
 
-        String jwt = jwtTokenProvider.generateToken(user);
-        String link = "http://localhost:8080/api/auth/validate/" + jwt;
-
-        try {
-            mailSenderService.sendEmail(dto.getEmail(), link);
-        } catch (Exception e) {
-            userRepository.delete(user);
-            throw new ServerBadRequestException("Email not delivered");
-        }
     }
 
     public void validation(String jwt) {
