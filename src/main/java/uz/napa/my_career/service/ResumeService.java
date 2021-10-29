@@ -43,7 +43,7 @@ public class ResumeService {
     public Resume getEntityById(Long id) {
         Optional<Resume> optional = resumeRepository.findById(id);
         if (optional.isEmpty()){
-            throw new ServerBadRequestException("REsume not found");
+            throw new ServerBadRequestException("Resume not found");
         }
         return optional.get();
     }
