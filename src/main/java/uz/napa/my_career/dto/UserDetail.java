@@ -6,13 +6,13 @@ import lombok.Setter;
 import uz.napa.my_career.entity.Address;
 import uz.napa.my_career.entity.Role;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDetail {
+public class    UserDetail {
+    private Long id;
 
     private String username;
 
@@ -24,7 +24,7 @@ public class UserDetail {
 
     private String phone;
 
-    private Address address;
+    private AddressDetail address;
 
     private boolean active;
 
