@@ -1,8 +1,6 @@
 package uz.napa.my_career.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import uz.napa.my_career.entity.Address;
 import uz.napa.my_career.entity.Role;
 
@@ -11,6 +9,8 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class    UserDetail {
     private Long id;
 

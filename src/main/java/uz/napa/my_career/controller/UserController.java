@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uz.napa.my_career.config.SecurityUtil;
 import uz.napa.my_career.dto.UserDetail;
-import uz.napa.my_career.service.UserService;
+ import uz.napa.my_career.service.UserService;
 
 @RestController
 @RequestMapping("/user")
@@ -27,7 +28,7 @@ public class UserController {
 
     @PostMapping("/create")
     public HttpEntity<?> create(@RequestBody UserDetail user) {
-       userService.create(user);
+        userService.create(user);
         return ResponseEntity.ok().build();
     }
 
@@ -35,5 +36,17 @@ public class UserController {
     public HttpEntity<?> delete(@PathVariable("id") Long id) {
         userService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/log-info")
+    public HttpEntity<?> setNameSurnamePhoneAddress(@RequestBody UserDetail user) {
+        userService.setInfo(user);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public HttpEntity<?> getUserInfo(){
+        Long id = SecurityUtil.getUserId();
+        return ResponseEntity.ok().body(id);
     }
 }

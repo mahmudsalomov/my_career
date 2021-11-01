@@ -6,14 +6,12 @@ import org.springframework.stereotype.Service;
 import uz.napa.my_career.dto.AddressDetail;
 import uz.napa.my_career.dto.UserDetail;
 import uz.napa.my_career.entity.Address;
-import uz.napa.my_career.entity.Role;
 import uz.napa.my_career.entity.User;
 import uz.napa.my_career.exception.ServerBadRequestException;
 import uz.napa.my_career.repository.AddressRepository;
 import uz.napa.my_career.repository.RoleRepository;
 import uz.napa.my_career.repository.UserRepository;
 
-import java.util.HashSet;
 import java.util.Optional;
 
 @Service
@@ -23,20 +21,19 @@ public class UserService {
     @Autowired
     private AddressRepository addressRepository;
     @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public UserDetail get(Long id) {
         User user = getUserEntity(id);
-        UserDetail userDetail = new UserDetail();
-        userDetail.setId(user.getId());
-        userDetail.setUsername(user.getUsername());
-        userDetail.setEmail(user.getEmail());
-        userDetail.setFirstname(user.getFirstname());
-        userDetail.setLastname(user.getLastname());
-        userDetail.setPhone(user.getPhone());
-        userDetail.setRoles(user.getRoles());
+        UserDetail userDetail = UserDetail.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .phone(user.getPhone())
+                .roles(user.getRoles())
+                .build();
 
         AddressDetail addressDetail = new AddressDetail();
         if (user.getAddress() != null) {
@@ -102,7 +99,7 @@ public class UserService {
 
     public void create(UserDetail user) {
         Optional<User> optional = userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail());
-         if (optional.isPresent()) {
+        if (optional.isPresent()) {
             throw new ServerBadRequestException("User with this email or username already exist");
         }
         AddressDetail addressDetail = user.getAddress();
@@ -116,15 +113,17 @@ public class UserService {
         addressRepository.save(address);
 
 
-        User entity = new User();
-        entity.setFirstname(user.getFirstname());
-        entity.setLastname(user.getLastname());
-        entity.setPhone(user.getPhone());
-        entity.setEmail(user.getEmail());
-        entity.setPassword(passwordEncoder.encode(user.getPassword()));
-        entity.setAddress(address);
-        entity.setUsername(user.getUsername());
-        entity.setRoles(user.getRoles());
+        User entity = User.builder()
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .phone(user.getPhone())
+                .email(user.getEmail())
+                .password(passwordEncoder.encode(user.getPassword()))
+                .address(address)
+                .username(user.getUsername())
+                .roles(user.getRoles())
+                .build();
+
         userRepository.save(entity);
     }
 
@@ -133,5 +132,34 @@ public class UserService {
         User user = getUserEntity(id);
         userRepository.delete(user);
     }
+
+    public void setInfo(UserDetail detail) {
+        Address address = addressRepository.save(Address
+                .builder()
+                .country(detail.getAddress().getCountry())
+                .city(detail.getAddress().getCity())
+                .district(detail.getAddress().getDistrict())
+                .homeNum(detail.getAddress().getHomeNum())
+                .region(detail.getAddress().getRegion())
+                .street(detail.getAddress().getStreet())
+                .build()
+        );
+        addressRepository.save(address);
+
+        User user = User.builder()
+                .firstname(detail.getFirstname())
+                .lastname(detail.getLastname())
+                .username(detail.getUsername())
+                .lastname(detail.getLastname())
+                .phone(detail.getPhone())
+                .email(detail.getEmail())
+                .roles(detail.getRoles())
+                .active(true)
+                .address(address)
+                .password(passwordEncoder.encode(detail.getPassword()))
+                .build();
+        userRepository.save(user);
+    }
+
 }
 
