@@ -22,7 +22,7 @@ public class Resume {
     private Long id;
 
     @Column(columnDefinition = "text")
-    private String bio;
+    private String aboutMe;
 
     @Column(columnDefinition = "text")
     private String interests;
@@ -33,6 +33,10 @@ public class Resume {
     @Column(name = ("carted_date"))
     private LocalDateTime cratedDate;
 
+    @Column(name = ("cover_letter"))
+    private String coverLetter;
+
+    // FetchType ni oylab korish
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Skills> skills;
