@@ -64,8 +64,8 @@ public class ResumeService {
         resumeEntity.setCratedDate(LocalDateTime.now());
 
 //        resumeEntity.setExperienceSet(dto.getExperienceList());
-        if (!resumeEntity.getExperienceSet().isEmpty()) {
-            for (Experience experience : resumeEntity.getExperienceSet()) {
+        if (!dto.getExperienceList().isEmpty()) {
+            for (Experience experience : dto.getExperienceList()) {
                 experience = Experience.builder()
                         .jobName(experience.getJobName())
                         .startDate(experience.getStartDate())
@@ -76,28 +76,29 @@ public class ResumeService {
         }
 
 //        resumeEntity.setEducationSet(dto.getEducations());
-        if (!resumeEntity.getExperienceSet().isEmpty()) {
-            for (Education education : resumeEntity.getEducationSet()) {
+        if (!dto.getEducations().isEmpty()) {
+            for (Education education : dto.getEducations()) {
                 education = Education.builder()
                         .schoolName(education.getSchoolName())
                         .diplomaCode(education.getDiplomaCode())
                         .startDate(education.getStartDate())
                         .endDate(education.getEndDate())
+                        // !
                         .organization(education.getOrganization())
                         .build();
-                educationRepository.save(education);
-
+//                educationRepository.save(education);
             }
         }
 
 //        resumeEntity.setSkills(dto.getSkillsList());
-        if (!resumeEntity.getSkills().isEmpty()){
-            for (Skills skills : resumeEntity.getSkills()){
+        if (!dto.getSkillsList().isEmpty()){
+            for (Skills skills : dto.getSkillsList()){
                 skills = Skills.builder()
                         .name(skills.getName())
+                        //!
                         .category(skills.getCategory())
                         .build();
-                skillRepository.save(skills);
+//                skillRepository.save(skills);
             }
         }
         resumeRepository.save(resumeEntity);
