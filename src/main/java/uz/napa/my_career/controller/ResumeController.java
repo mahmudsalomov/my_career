@@ -18,8 +18,8 @@ public class ResumeController {
     //create resume
     @PostMapping("/create")
     public HttpEntity<?> create(@RequestBody ResumeCreateDto resume){
-        resumeService.create(resume);
-        return ResponseEntity.ok().build();
+        ResumeCreateDto dto = resumeService.create(resume);
+        return ResponseEntity.ok().body(dto);
     }
 
     //get resume

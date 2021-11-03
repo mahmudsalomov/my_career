@@ -7,6 +7,8 @@ import uz.napa.my_career.entity.Address;
 import uz.napa.my_career.entity.Education;
 import uz.napa.my_career.entity.Experience;
 import uz.napa.my_career.entity.Skills;
+
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -15,11 +17,7 @@ import java.util.Set;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResumeDetailDto {
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String phone;
-    private String email;
-    private Address address;
+    private Long userId;
     private LocalDateTime cratedDate;
     private String aboutMe;
     private String coverLater;

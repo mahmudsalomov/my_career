@@ -16,16 +16,8 @@ import java.util.Set;
 @Getter
 @Setter
 public class ResumeUpdateDto {
-    @NotEmpty
-    private String firstName;
-    @NotEmpty
-    private String lastName;
-    @NotEmpty
-    private String phoneNumber;
-    @Email
-    private String email;
     @NotBlank
-    private Address address;
+    private Long userId;
     @NotBlank
     private String aboutMe;
     @NotBlank

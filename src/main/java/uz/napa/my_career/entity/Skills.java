@@ -15,12 +15,12 @@ public class Skills {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @Column(columnDefinition = "text")
-    private String description;
     @ManyToOne
     private SkillCategory category;
-    @ManyToOne
-    private Resume resume;
+
+
+    //    @Column(columnDefinition = "text")
+//    private String description;
 
 
 }

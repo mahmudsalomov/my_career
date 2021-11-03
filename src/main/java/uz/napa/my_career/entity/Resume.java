@@ -24,8 +24,8 @@ public class Resume {
     @Column(columnDefinition = "text")
     private String aboutMe;
 
-    @Column(columnDefinition = "text")
-    private String interests;
+//    @Column(columnDefinition = "text")
+//    private String interests;
 
     @ManyToOne
     private User user;

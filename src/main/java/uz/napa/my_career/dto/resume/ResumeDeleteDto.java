@@ -9,11 +9,7 @@ import java.util.Set;
 
 public class ResumeDeleteDto {
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String phone;
-    private String email;
-    private Address address;
+    private Long userId;
     private LocalDateTime cratedDate;
     private String aboutMe;
     private String coverLater;

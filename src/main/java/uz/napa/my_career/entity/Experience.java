@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -19,12 +21,8 @@ public class Experience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String jobName;
-
-    private Date startDate;
-    private Date endDate;
-
-    @ManyToOne
-    private Resume resume;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     @OneToOne
     private Organization organization;

@@ -16,7 +16,7 @@ public class SkillCategory {
     private Short id;
     private String name;
 
-    @Column(columnDefinition = "text")
-    private String description;
+//    @Column(columnDefinition = "text")
+//    private String description;
 
 }
