@@ -5,12 +5,9 @@ import org.springframework.stereotype.Service;
 import uz.napa.my_career.dto.resume.ResumeCreateDto;
 import uz.napa.my_career.dto.resume.ResumeDetailDto;
 import uz.napa.my_career.dto.resume.ResumeUpdateDto;
-import uz.napa.my_career.entity.Experience;
-import uz.napa.my_career.entity.Resume;
-import uz.napa.my_career.entity.User;
+import uz.napa.my_career.entity.*;
 import uz.napa.my_career.exception.ServerBadRequestException;
-import uz.napa.my_career.repository.ResumeRepository;
-import uz.napa.my_career.repository.UserRepository;
+import uz.napa.my_career.repository.*;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -21,6 +18,12 @@ public class ResumeService {
     private UserRepository userRepository;
     @Autowired
     private ResumeRepository resumeRepository;
+    @Autowired
+    ExperienceRepository experienceRepository;
+    @Autowired
+    EducationRepository educationRepository;
+    @Autowired
+    SkillRepository skillRepository;
 
     public void getDetail(Long resumeId) {
         Resume resumeEntity = getEntityById(resumeId);
@@ -58,15 +61,49 @@ public class ResumeService {
         resumeEntity.setUser(userEntity);
         resumeEntity.setAboutMe(dto.getAboutMe());
         resumeEntity.setCoverLetter(dto.getCoverLater());
-
+        resumeEntity.setCratedDate(LocalDateTime.now());
 
 //        resumeEntity.setExperienceSet(dto.getExperienceList());
+        if (!resumeEntity.getExperienceSet().isEmpty()) {
+            for (Experience experience : resumeEntity.getExperienceSet()) {
+                experience = Experience.builder()
+                        .jobName(experience.getJobName())
+                        .startDate(experience.getStartDate())
+                        .endDate(experience.getEndDate())
+                        .build();
+                experienceRepository.save(experience);
+            }
+        }
+
 //        resumeEntity.setEducationSet(dto.getEducations());
+        if (!resumeEntity.getExperienceSet().isEmpty()) {
+            for (Education education : resumeEntity.getEducationSet()) {
+                education = Education.builder()
+                        .schoolName(education.getSchoolName())
+                        .diplomaCode(education.getDiplomaCode())
+                        .startDate(education.getStartDate())
+                        .endDate(education.getEndDate())
+                        .organization(education.getOrganization())
+                        .build();
+                educationRepository.save(education);
+
+            }
+        }
+
 //        resumeEntity.setSkills(dto.getSkillsList());
-        resumeEntity.setCratedDate(LocalDateTime.now());
+        if (!resumeEntity.getSkills().isEmpty()){
+            for (Skills skills : resumeEntity.getSkills()){
+                skills = Skills.builder()
+                        .name(skills.getName())
+                        .category(skills.getCategory())
+                        .build();
+                skillRepository.save(skills);
+            }
+        }
         resumeRepository.save(resumeEntity);
         return dto;
     }
+
 
     public Boolean update(Long id, ResumeCreateDto dto) {
 
