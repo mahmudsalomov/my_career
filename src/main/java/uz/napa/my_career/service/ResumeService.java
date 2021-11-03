@@ -2,9 +2,12 @@ package uz.napa.my_career.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.napa.my_career.dto.UserDetail;
+import uz.napa.my_career.dto.resume.ResumeCreateDto;
 import uz.napa.my_career.dto.resume.ResumeDetailDto;
 import uz.napa.my_career.entity.Address;
 import uz.napa.my_career.entity.Resume;
+import uz.napa.my_career.entity.User;
 import uz.napa.my_career.exception.ServerBadRequestException;
 import uz.napa.my_career.repository.AddressRepository;
 import uz.napa.my_career.repository.ResumeRepository;
@@ -38,6 +41,31 @@ public class ResumeService {
         dto.setSkillsList(resumeEntity.getSkills());
         return dto;
     }
+
+    public ResumeCreateDto create(ResumeCreateDto dto ){
+
+        Resume resumeEntity = new Resume();
+        //user creating
+        User userEntity = resumeEntity.getUser();
+        userEntity.setFirstname(dto.getFirstName());
+        userEntity.setLastname(dto.getLastName());
+        userEntity.setEmail(dto.getEmail());
+        userEntity.setPhone(dto.getPhoneNumber());
+        userEntity.setAddress(dto.getAddress());
+        //resume creating
+        resumeEntity.setUser(userEntity);
+        resumeEntity.setAboutMe(dto.getAboutMe());
+        resumeEntity.setCoverLetter(dto.getCoverLater());
+        resumeEntity.setExperienceSet(dto.getExperienceList());
+        resumeEntity.setEducationSet(dto.getEducations());
+        resumeEntity.setSkills(dto.getSkillsList());
+        resumeEntity.setCratedDate(LocalDateTime.now());
+
+        return dto;
+    }
+
+
+
 
 
     public Resume getEntityById(Long id) {

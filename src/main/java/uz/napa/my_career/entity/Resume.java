@@ -36,8 +36,6 @@ public class Resume {
     @Column(name = ("cover_letter"))
     private String coverLetter;
 
-    // FetchType ni oylab korish
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Skills> skills;
 
