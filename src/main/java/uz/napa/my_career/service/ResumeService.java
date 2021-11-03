@@ -1,10 +1,10 @@
 package uz.napa.my_career.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.napa.my_career.dto.resume.ResumeCreateDto;
 import uz.napa.my_career.dto.resume.ResumeDetailDto;
-import uz.napa.my_career.dto.resume.ResumeUpdateDto;
 import uz.napa.my_career.entity.*;
 import uz.napa.my_career.exception.ServerBadRequestException;
 import uz.napa.my_career.repository.*;
@@ -24,6 +24,12 @@ public class ResumeService {
     EducationRepository educationRepository;
     @Autowired
     SkillRepository skillRepository;
+    @Autowired
+    OrganizationRepository organizationRepository;
+    @Autowired
+    AddressRepository addressRepository;
+    @Autowired
+    SkillCategoryRepository skillCategoryRepository;
 
     public void getDetail(Long resumeId) {
         Resume resumeEntity = getEntityById(resumeId);
@@ -47,7 +53,7 @@ public class ResumeService {
 
     }
 
-    public ResumeCreateDto create(ResumeCreateDto dto) {
+    public Resume create(ResumeCreateDto dto) {
         Resume resumeEntity = new Resume();
 
         //find user by id
@@ -78,31 +84,51 @@ public class ResumeService {
 //        resumeEntity.setEducationSet(dto.getEducations());
         if (!dto.getEducations().isEmpty()) {
             for (Education education : dto.getEducations()) {
+                if (education.getOrganization() != null) {
+                    Organization organization = education.getOrganization();
+                    if (organization.getAddress() != null) {
+                        Address address = Address.builder()
+                                .country(organization.getAddress().getCountry())
+                                .region(organization.getAddress().getRegion())
+                                .city(organization.getAddress().getCity())
+                                .district(organization.getAddress().getCity())
+                                .street(organization.getAddress().getDistrict())
+                                .homeNum(organization.getAddress().getHomeNum())
+                                .build();
+                        addressRepository.save(address);
+                        organization.setAddress(address);
+                    }
+                    organizationRepository.save(organization);
+                }
                 education = Education.builder()
                         .schoolName(education.getSchoolName())
                         .diplomaCode(education.getDiplomaCode())
                         .startDate(education.getStartDate())
                         .endDate(education.getEndDate())
-                        // !
-                        .organization(education.getOrganization())
+                        //organization
+//                       .organization(education.getOrganization())
                         .build();
-//                educationRepository.save(education);
+                educationRepository.save(education);
             }
         }
 
 //        resumeEntity.setSkills(dto.getSkillsList());
-        if (!dto.getSkillsList().isEmpty()){
-            for (Skills skills : dto.getSkillsList()){
+        if (!dto.getSkillsList().isEmpty()) {
+            for (Skills skills : dto.getSkillsList()) {
+                if (skills.getCategory() != null) {
+                    SkillCategory category = skills.getCategory();
+                    skillCategoryRepository.save(category);
+                }
                 skills = Skills.builder()
                         .name(skills.getName())
-                        //!
-                        .category(skills.getCategory())
+                        //category
+//                        .category(skills.getCategory())
                         .build();
-//                skillRepository.save(skills);
+                skillRepository.save(skills);
             }
         }
         resumeRepository.save(resumeEntity);
-        return dto;
+        return resumeEntity;
     }
 
 
