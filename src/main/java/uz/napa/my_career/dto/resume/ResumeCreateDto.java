@@ -4,10 +4,8 @@ package uz.napa.my_career.dto.resume;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
-import uz.napa.my_career.entity.Address;
-import uz.napa.my_career.entity.Education;
-import uz.napa.my_career.entity.Experience;
-import uz.napa.my_career.entity.Skills;
+import uz.napa.my_career.entity.*;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -39,9 +37,4 @@ public class ResumeCreateDto {
     private Set<Education> educations;
     @NotNull
     private Set<Experience> experienceList;
-
-
-
-
-
 }

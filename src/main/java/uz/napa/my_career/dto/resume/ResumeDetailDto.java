@@ -14,7 +14,7 @@ import java.util.Set;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResumeDetailDto {
-    private Integer id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String phone;
