@@ -3,6 +3,8 @@ package uz.napa.my_career.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import uz.napa.my_career.config.SecurityUtil;
 import uz.napa.my_career.dto.UserDetail;
@@ -46,7 +48,7 @@ public class UserController {
 
     @GetMapping
     public HttpEntity<?> getUserInfo(){
-        Long id = SecurityUtil.getUserId();
-        return ResponseEntity.ok().body(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok().build();
     }
 }

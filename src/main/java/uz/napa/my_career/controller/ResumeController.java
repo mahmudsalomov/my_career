@@ -24,11 +24,10 @@ public class ResumeController {
     }
 
     //get resume
-    @GetMapping("/detail")
-    public HttpEntity<?> getResume(@RequestBody ResumeDetailDto resumeDetailDto){
-        Long userId = resumeDetailDto.getId();
-        resumeService.getDetail(userId);
-        return ResponseEntity.ok().body(resumeDetailDto);
+    @GetMapping("/detail/{id}")
+    public HttpEntity<?> getResume(@PathVariable("id") Long id){
+        Resume resume = resumeService.getDetail(id);
+        return ResponseEntity.ok().body(resume);
     }
 
     //update resume

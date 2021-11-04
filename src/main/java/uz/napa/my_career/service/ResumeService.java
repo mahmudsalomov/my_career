@@ -10,6 +10,7 @@ import uz.napa.my_career.exception.ServerBadRequestException;
 import uz.napa.my_career.repository.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Optional;
 
 @Service
@@ -31,29 +32,14 @@ public class ResumeService {
     @Autowired
     SkillCategoryRepository skillCategoryRepository;
 
-    public void getDetail(Long resumeId) {
-        Resume resumeEntity = getEntityById(resumeId);
-        ResumeDetailDto dto = new ResumeDetailDto();
-
-        //find user by id
-        Optional<User> optional = userRepository.findById(dto.getId());
-        if (optional.isEmpty()) {
-            throw new ServerBadRequestException("This user not found.");
-        }
-        User userEntity = optional.get();
-
-        //find resume details
-        dto.setCratedDate(LocalDateTime.now());
-        dto.setAboutMe(resumeEntity.getAboutMe());
-        dto.setCoverLater(resumeEntity.getCoverLetter());
-
-        dto.setExperienceList(resumeEntity.getExperienceSet());
-        dto.setEducationList(resumeEntity.getEducationSet());
-        dto.setSkillsList(resumeEntity.getSkills());
-
+    public Resume getDetail(Long resumeId) {
+        return getEntityById(resumeId);
     }
 
     public Resume create(ResumeCreateDto dto) {
+        HashSet<Experience> experienceHashSet = new HashSet<>();
+        HashSet<Skills> skillsHashSet = new HashSet<>();
+        HashSet<Education> educationHashSet = new HashSet<>();
         Resume resumeEntity = new Resume();
 
         //find user by id
@@ -69,64 +55,38 @@ public class ResumeService {
         resumeEntity.setCoverLetter(dto.getCoverLater());
         resumeEntity.setCratedDate(LocalDateTime.now());
 
-//        resumeEntity.setExperienceSet(dto.getExperienceList());
+        //experience process
         if (!dto.getExperienceList().isEmpty()) {
             for (Experience experience : dto.getExperienceList()) {
-                experience = Experience.builder()
-                        .jobName(experience.getJobName())
-                        .startDate(experience.getStartDate())
-                        .endDate(experience.getEndDate())
-                        .build();
+                addressRepository.save(experience.getOrganization().getAddress());
+                organizationRepository.save(experience.getOrganization());
+                experienceHashSet.add(experience);
                 experienceRepository.save(experience);
             }
+
         }
 
 //        resumeEntity.setEducationSet(dto.getEducations());
         if (!dto.getEducations().isEmpty()) {
             for (Education education : dto.getEducations()) {
-                if (education.getOrganization() != null) {
-                    Organization organization = education.getOrganization();
-                    if (organization.getAddress() != null) {
-                        Address address = Address.builder()
-                                .country(organization.getAddress().getCountry())
-                                .region(organization.getAddress().getRegion())
-                                .city(organization.getAddress().getCity())
-                                .district(organization.getAddress().getCity())
-                                .street(organization.getAddress().getDistrict())
-                                .homeNum(organization.getAddress().getHomeNum())
-                                .build();
-                        addressRepository.save(address);
-                        organization.setAddress(address);
-                    }
-                    organizationRepository.save(organization);
-                }
-                education = Education.builder()
-                        .schoolName(education.getSchoolName())
-                        .diplomaCode(education.getDiplomaCode())
-                        .startDate(education.getStartDate())
-                        .endDate(education.getEndDate())
-                        //organization
-//                       .organization(education.getOrganization())
-                        .build();
+                addressRepository.save(education.getOrganization().getAddress());
+                organizationRepository.save(education.getOrganization());
+                educationHashSet.add(education);
                 educationRepository.save(education);
             }
         }
 
 //        resumeEntity.setSkills(dto.getSkillsList());
         if (!dto.getSkillsList().isEmpty()) {
-            for (Skills skills : dto.getSkillsList()) {
-                if (skills.getCategory() != null) {
-                    SkillCategory category = skills.getCategory();
-                    skillCategoryRepository.save(category);
-                }
-                skills = Skills.builder()
-                        .name(skills.getName())
-                        //category
-//                        .category(skills.getCategory())
-                        .build();
-                skillRepository.save(skills);
+            for (Skills skill : dto.getSkillsList()) {
+                skillCategoryRepository.save(skill.getCategory());
+                skillsHashSet.add(skill);
+                skillRepository.save(skill);
             }
         }
+        resumeEntity.setExperienceSet(experienceHashSet);
+        resumeEntity.setEducationSet(educationHashSet);
+        resumeEntity.setSkills(skillsHashSet);
         resumeRepository.save(resumeEntity);
         return resumeEntity;
     }
@@ -173,4 +133,28 @@ public class ResumeService {
         return optional.get();
     }
 
+    public User getUserById(Long id) {
+        Optional<User> optional = userRepository.findById(id);
+        if (optional.isEmpty()) {
+            throw new ServerBadRequestException("This user not found.");
+        }
+        return optional.get();
+    }
+
+    private Organization getOrganization(Organization organization) {
+        if (organization.getAddress() != null) {
+            Address address = Address.builder()
+                    .country(organization.getAddress().getCountry())
+                    .region(organization.getAddress().getRegion())
+                    .city(organization.getAddress().getCity())
+                    .district(organization.getAddress().getCity())
+                    .street(organization.getAddress().getDistrict())
+                    .homeNum(organization.getAddress().getHomeNum())
+                    .build();
+            addressRepository.save(address);
+            organization.setAddress(address);
+            organizationRepository.save(organization);
+        }
+        return organization;
+    }
 }

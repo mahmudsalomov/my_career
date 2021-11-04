@@ -98,10 +98,12 @@ public class UserService {
 
 
     public void create(UserDetail user) {
+//        checking email and username
         Optional<User> optional = userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail());
         if (optional.isPresent()) {
             throw new ServerBadRequestException("User with this email or username already exist");
         }
+        //address creating
         AddressDetail addressDetail = user.getAddress();
         Address address = new Address();
         address.setCity(addressDetail.getCity());
