@@ -92,15 +92,41 @@ public class ResumeService {
     }
 
 
-    public Boolean update(Long id, ResumeCreateDto dto) {
+    public Resume update(Long id, ResumeCreateDto dto) {
+        HashSet<Experience> experienceHashSet = new HashSet<>();
+        HashSet<Skills> skillsHashSet = new HashSet<>();
+        HashSet<Education> educationHashSet = new HashSet<>();
 
         Resume resumeEntity = getEntityById(id);
-        User userEntity = resumeEntity.getUser();
+        User userEntity = getUserById(dto.getUserId());
+        //experience process
+        if (!dto.getExperienceList().isEmpty()) {
+            for (Experience experience : dto.getExperienceList()) {
+                addressRepository.save(experience.getOrganization().getAddress());
+                organizationRepository.save(experience.getOrganization());
+                experienceHashSet.add(experience);
+                experienceRepository.save(experience);
+            }
 
-        //        find user by id
-        Optional<User> optional = userRepository.findById(dto.getId());
-        if (optional.isEmpty()) {
-            throw new ServerBadRequestException("This user not found.");
+        }
+
+//        resumeEntity.setEducationSet(dto.getEducations());
+        if (!dto.getEducations().isEmpty()) {
+            for (Education education : dto.getEducations()) {
+                addressRepository.save(education.getOrganization().getAddress());
+                organizationRepository.save(education.getOrganization());
+                educationHashSet.add(education);
+                educationRepository.save(education);
+            }
+        }
+
+//        resumeEntity.setSkills(dto.getSkillsList());
+        if (!dto.getSkillsList().isEmpty()) {
+            for (Skills skill : dto.getSkillsList()) {
+                skillCategoryRepository.save(skill.getCategory());
+                skillsHashSet.add(skill);
+                skillRepository.save(skill);
+            }
         }
 
         //resume details updating
@@ -110,17 +136,17 @@ public class ResumeService {
         resumeEntity.setExperienceSet(dto.getExperienceList());
         resumeEntity.setEducationSet(dto.getEducations());
         resumeEntity.setSkills(dto.getSkillsList());
-        return true;
+        resumeRepository.save(resumeEntity);
+        return resumeEntity;
     }
 
-    public Boolean delete(Long id, ResumeCreateDto dto) {
+    public Boolean delete(Long id) {
         //find resume
-        Optional<User> optional = userRepository.findById(dto.getId());
-        if (!optional.isPresent()) {
+        Optional<Resume> optional = resumeRepository.findById(id);
+        if (optional.isEmpty()) {
             throw new ServerBadRequestException("This resume not found.");
         }
-
-
+        resumeRepository.delete(optional.get());
         return true;
     }
 
@@ -139,22 +165,5 @@ public class ResumeService {
             throw new ServerBadRequestException("This user not found.");
         }
         return optional.get();
-    }
-
-    private Organization getOrganization(Organization organization) {
-        if (organization.getAddress() != null) {
-            Address address = Address.builder()
-                    .country(organization.getAddress().getCountry())
-                    .region(organization.getAddress().getRegion())
-                    .city(organization.getAddress().getCity())
-                    .district(organization.getAddress().getCity())
-                    .street(organization.getAddress().getDistrict())
-                    .homeNum(organization.getAddress().getHomeNum())
-                    .build();
-            addressRepository.save(address);
-            organization.setAddress(address);
-            organizationRepository.save(organization);
-        }
-        return organization;
     }
 }

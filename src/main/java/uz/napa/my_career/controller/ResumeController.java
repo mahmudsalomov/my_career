@@ -18,25 +18,29 @@ public class ResumeController {
 
     //create resume
     @PostMapping("/create")
-    public HttpEntity<?> create(@RequestBody ResumeCreateDto resume){
+    public HttpEntity<?> create(@RequestBody ResumeCreateDto resume) {
         Resume dto = resumeService.create(resume);
         return ResponseEntity.ok().body(dto);
     }
 
     //get resume
     @GetMapping("/detail/{id}")
-    public HttpEntity<?> getResume(@PathVariable("id") Long id){
-        Resume resume = resumeService.getDetail(id);
-        return ResponseEntity.ok().body(resume);
+    public HttpEntity<?> getResume(@PathVariable("id") Long id) {
+        Resume result = resumeService.getDetail(id);
+        return ResponseEntity.ok().body(result);
     }
 
     //update resume
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody ResumeCreateDto dto){
-       resumeService.update(id,dto);
-       return ResponseEntity.ok().build();
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody ResumeCreateDto dto) {
+        Resume result = resumeService.update(id, dto);
+        return ResponseEntity.ok().body(result);
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+        resumeService.delete(id);
+        return ResponseEntity.ok().build();
+    }
 
 }
