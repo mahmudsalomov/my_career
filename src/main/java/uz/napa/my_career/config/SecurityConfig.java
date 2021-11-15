@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import uz.napa.my_career.secret.JwtFilter;
 import uz.napa.my_career.service.AuthService;
+import uz.napa.my_career.service.CustomOAuth2UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +24,8 @@ import uz.napa.my_career.service.AuthService;
         jsr250Enabled = true,
         prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+    @Autowired
+    private CustomOAuth2UserService oauth2UserService;
 
     @Autowired
     AuthService authService;
@@ -75,7 +77,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest()
 //                .authenticated();
-                .permitAll();
+                .permitAll().
+                and().oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint().userService(oauth2UserService);
+
         http.addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
