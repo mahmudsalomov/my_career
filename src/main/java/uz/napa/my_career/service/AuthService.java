@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.napa.my_career.dto.RegistrationDto;
 import uz.napa.my_career.entity.Role;
-import uz.napa.my_career.entity.RoleName;
+import uz.napa.my_career.entity.enums.RoleName;
 import uz.napa.my_career.entity.User;
 
 import uz.napa.my_career.exception.ServerBadRequestException;

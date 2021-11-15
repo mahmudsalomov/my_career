@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import uz.napa.my_career.entity.enums.RoleName;
 
 import javax.persistence.*;
 
