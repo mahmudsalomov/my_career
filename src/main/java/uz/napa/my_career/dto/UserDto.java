@@ -1,8 +1,8 @@
 package uz.napa.my_career.dto;
 
 import lombok.*;
-import uz.napa.my_career.entity.Address;
 import uz.napa.my_career.entity.Role;
+import uz.napa.my_career.entity.UserNetworks;
 
 import java.util.Set;
 
@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class    UserDetail {
+public class UserDto {
     private Long id;
 
     private String username;
@@ -29,4 +29,6 @@ public class    UserDetail {
     private boolean active;
 
     private Set<Role> roles;
+
+    private Set<UserNetworks> userNetworks;
 }

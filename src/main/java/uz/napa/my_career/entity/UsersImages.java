@@ -28,9 +28,4 @@ public class UsersImages {
     @JoinColumn(name = ("fileStorageId"),insertable = false, updatable = false)
     private User user;
 
-
-
-
-
-
 }

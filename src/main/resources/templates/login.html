@@ -83,6 +83,15 @@
                                     </a>
                                 </div><!--end col-->
                             </div> <!--end form-group-->
+                            <div class="form-group mt-4 row">
+                                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"><a
+                                        href="/oauth2/authorization/facebook" class="btn btn-primary">Login
+                                    with Facebook<i class="fa fas-facebook"></i> </a></div>
+                                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"><a
+                                        href="/oauth2/authorization/facebook" class="btn btn-primary">Login
+                                    with Google<i class="fa fas-google-plus"></i> </a></div>
+
+                            </div>
                         </form><!--end form-->
                     </div><!--end /div-->
 
@@ -116,6 +125,14 @@
             .catch(function () {
                 window.location.href = "/login"
             })
+    }
+
+    function loginFacebook() {
+        axios.get("")
+    }
+
+    function loginGoogle() {
+        loginFacebook()
     }
 
 </script>

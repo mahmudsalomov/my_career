@@ -4,12 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.napa.my_career.dto.AddressDetail;
-import uz.napa.my_career.dto.UserDetail;
+import uz.napa.my_career.dto.PasswordChangeDto;
+import uz.napa.my_career.dto.UserDto;
 import uz.napa.my_career.entity.Address;
 import uz.napa.my_career.entity.User;
 import uz.napa.my_career.exception.ServerBadRequestException;
 import uz.napa.my_career.repository.AddressRepository;
-import uz.napa.my_career.repository.RoleRepository;
+import uz.napa.my_career.repository.UserNetworksRepository;
 import uz.napa.my_career.repository.UserRepository;
 
 import java.util.Optional;
@@ -22,10 +23,12 @@ public class UserService {
     private AddressRepository addressRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserNetworksRepository userNetworksRepository;
 
-    public UserDetail get(Long id) {
+    public UserDto get(Long id) {
         User user = getUserEntity(id);
-        UserDetail userDetail = UserDetail.builder()
+        UserDto userDetail = UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())
@@ -36,21 +39,16 @@ public class UserService {
                 .build();
 
         AddressDetail addressDetail = new AddressDetail();
-        if (user.getAddress() != null) {
-            Optional<Address> optional = addressRepository.findById(user.getAddress().getId());
-            if (optional.isPresent()) {
-                Address address = optional.get();
-                addressDetail.setCity(user.getAddress().getCity());
-                addressDetail.setDistrict(user.getAddress().getDistrict());
-                addressDetail.setCountry(user.getAddress().getCountry());
-                addressDetail.setHomeNum(user.getAddress().getHomeNum());
-                addressDetail.setRegion(user.getAddress().getRegion());
-                addressDetail.setStreet(user.getAddress().getStreet());
-                addressDetail.setId(user.getAddress().getId());
-            }
-        }
 
+        addressDetail.setCity(user.getAddress().getCity());
+        addressDetail.setDistrict(user.getAddress().getDistrict());
+        addressDetail.setCountry(user.getAddress().getCountry());
+        addressDetail.setHomeNum(user.getAddress().getHomeNum());
+        addressDetail.setRegion(user.getAddress().getRegion());
+        addressDetail.setStreet(user.getAddress().getStreet());
+        addressDetail.setId(user.getAddress().getId());
 
+        userDetail.setUserNetworks(user.getNetworks());
         userDetail.setAddress(addressDetail);
         return userDetail;
     }
@@ -64,12 +62,11 @@ public class UserService {
         return optional.get();
     }
 
-    public UserDetail update(Long userId, UserDetail user) {
+    public UserDto update(Long userId, UserDto user) {
         Optional<User> optional = userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail());
         if (optional.isPresent()) {
             throw new ServerBadRequestException("User with this email or username already exist");
         }
-
 
         User entity = getUserEntity(userId);
         entity.setFirstname(user.getFirstname());
@@ -80,6 +77,9 @@ public class UserService {
         entity.setPassword(passwordEncoder.encode(user.getPassword()));
         entity.setRoles(user.getRoles());
 
+        if (!user.getUserNetworks().isEmpty()) {
+            userNetworksRepository.saveAll(user.getUserNetworks());
+        }
 
         Address address = entity.getAddress();
         address.setId(entity.getAddress().getId());
@@ -97,7 +97,7 @@ public class UserService {
     }
 
 
-    public void create(UserDetail user) {
+    public void create(UserDto user) {
 //        checking email and username
         Optional<User> optional = userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail());
         if (optional.isPresent()) {
@@ -114,6 +114,9 @@ public class UserService {
         address.setHomeNum(addressDetail.getHomeNum());
         addressRepository.save(address);
 
+        if (!user.getUserNetworks().isEmpty()) {
+            userNetworksRepository.saveAll(user.getUserNetworks());
+        }
 
         User entity = User.builder()
                 .firstname(user.getFirstname())
@@ -135,7 +138,7 @@ public class UserService {
         userRepository.delete(user);
     }
 
-    public void setInfo(UserDetail detail) {
+    public void setInfo(UserDto detail) {
         Address address = addressRepository.save(Address
                 .builder()
                 .country(detail.getAddress().getCountry())
@@ -160,6 +163,23 @@ public class UserService {
                 .address(address)
                 .password(passwordEncoder.encode(detail.getPassword()))
                 .build();
+        userRepository.save(user);
+
+        userNetworksRepository.saveAll(user.getNetworks());
+    }
+
+    public void changePassword(Long id, PasswordChangeDto dto) {
+        Optional<User> optional = userRepository.findByIdAndPassword(id, passwordEncoder.encode(dto.getOldPassword()));
+        if (optional.isEmpty()) {
+            throw new ServerBadRequestException("Error, user or password invalid!");
+        }
+        String firstPassword = dto.getFirstNewPassword();
+        String secondPassword = dto.getSecondNewPassword();
+        if (firstPassword.equals(secondPassword)) {
+            throw new ServerBadRequestException("Passwords invalid");
+        }
+        User user = optional.get();
+        user.setPassword(passwordEncoder.encode(firstPassword));
         userRepository.save(user);
     }
 

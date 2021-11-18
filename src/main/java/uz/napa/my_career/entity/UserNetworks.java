@@ -23,13 +23,4 @@ public class UserNetworks {
 
     private String link;
 
-
-
-
-
-
-
-
-
-
 }
