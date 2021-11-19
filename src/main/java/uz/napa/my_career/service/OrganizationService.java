@@ -36,6 +36,11 @@ public class OrganizationService {
         return convertEntityToDto(organization);
     }
 
+    public void delete(Integer id) {
+        Organization organization = getEntity(id);
+        organizationRepository.delete(organization);
+    }
+
     //Secondary functions
     public Organization getEntity(Integer id) {
         Optional<Organization> optional = organizationRepository.findById(id);

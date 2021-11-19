@@ -11,30 +11,30 @@ import uz.napa.my_career.dto.UserDto;
 import uz.napa.my_career.service.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public HttpEntity<?> get(@PathVariable("id") Long id) {
         UserDto result = userService.get(id);
         return ResponseEntity.ok().body(result);
     }
 
-    @PostMapping("/update")
+    @PutMapping()
     public HttpEntity<?> update(@RequestBody UserDto user) {
         UserDto result = userService.update(user.getId(), user);
         return ResponseEntity.ok().body(result);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public HttpEntity<?> create(@RequestBody UserDto user) {
         userService.create(user);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public HttpEntity<?> delete(@PathVariable("id") Long id) {
         userService.delete(id);
         return ResponseEntity.ok().build();

@@ -26,7 +26,7 @@ public class OrganizationController {
     }
 
     @PutMapping
-    public HttpEntity<?> create(@RequestBody OrganizationDto dto) {
+    public HttpEntity<?> update(@RequestBody OrganizationDto dto) {
         OrganizationDto result = organizationService.update(dto);
         return ResponseEntity.ok().body(result);
     }

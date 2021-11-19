@@ -28,38 +28,7 @@ public class UserService {
 
     public UserDto get(Long id) {
         User user = getUserEntity(id);
-        UserDto userDetail = UserDto.builder()
-                .id(user.getId())
-                .username(user.getUsername())
-                .email(user.getEmail())
-                .firstname(user.getFirstname())
-                .lastname(user.getLastname())
-                .phone(user.getPhone())
-                .roles(user.getRoles())
-                .build();
-
-        AddressDetail addressDetail = new AddressDetail();
-
-        addressDetail.setCity(user.getAddress().getCity());
-        addressDetail.setDistrict(user.getAddress().getDistrict());
-        addressDetail.setCountry(user.getAddress().getCountry());
-        addressDetail.setHomeNum(user.getAddress().getHomeNum());
-        addressDetail.setRegion(user.getAddress().getRegion());
-        addressDetail.setStreet(user.getAddress().getStreet());
-        addressDetail.setId(user.getAddress().getId());
-
-        userDetail.setUserNetworks(user.getNetworks());
-        userDetail.setAddress(addressDetail);
-        return userDetail;
-    }
-
-
-    public User getUserEntity(Long id) {
-        Optional<User> optional = userRepository.findById(id);
-        if (optional.isEmpty()) {
-            throw new ServerBadRequestException("User not found");
-        }
-        return optional.get();
+        return convertEntityToDto(user);
     }
 
     public UserDto update(Long userId, UserDto user) {
@@ -77,8 +46,8 @@ public class UserService {
         entity.setPassword(passwordEncoder.encode(user.getPassword()));
         entity.setRoles(user.getRoles());
 
-        if (!user.getUserNetworks().isEmpty()) {
-            userNetworksRepository.saveAll(user.getUserNetworks());
+        if (!user.getNetworks().isEmpty()) {
+            userNetworksRepository.saveAll(user.getNetworks());
         }
 
         Address address = entity.getAddress();
@@ -97,39 +66,14 @@ public class UserService {
     }
 
 
-    public void create(UserDto user) {
+    public void create(UserDto dto) {
 //        checking email and username
-        Optional<User> optional = userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail());
+        Optional<User> optional = userRepository.findByUsernameOrEmail(dto.getUsername(), dto.getEmail());
         if (optional.isPresent()) {
             throw new ServerBadRequestException("User with this email or username already exist");
         }
-        //address creating
-        AddressDetail addressDetail = user.getAddress();
-        Address address = new Address();
-        address.setCity(addressDetail.getCity());
-        address.setCountry(addressDetail.getCountry());
-        address.setDistrict(addressDetail.getDistrict());
-        address.setRegion(addressDetail.getRegion());
-        address.setStreet(addressDetail.getStreet());
-        address.setHomeNum(addressDetail.getHomeNum());
-        addressRepository.save(address);
-
-        if (!user.getUserNetworks().isEmpty()) {
-            userNetworksRepository.saveAll(user.getUserNetworks());
-        }
-
-        User entity = User.builder()
-                .firstname(user.getFirstname())
-                .lastname(user.getLastname())
-                .phone(user.getPhone())
-                .email(user.getEmail())
-                .password(passwordEncoder.encode(user.getPassword()))
-                .address(address)
-                .username(user.getUsername())
-                .roles(user.getRoles())
-                .build();
-
-        userRepository.save(entity);
+        User user = convertDtoToEntity(dto);
+        userRepository.save(user);
     }
 
 
@@ -183,5 +127,46 @@ public class UserService {
         userRepository.save(user);
     }
 
+
+    //Secondary functions
+    public User getUserEntity(Long id) {
+        Optional<User> optional = userRepository.findById(id);
+        if (optional.isEmpty()) {
+            throw new ServerBadRequestException("User not found");
+        }
+        return optional.get();
+    }
+
+    public UserDto convertEntityToDto(User entity) {
+        UserDto user = UserDto.builder()
+                .firstname(entity.getFirstname())
+                .lastname(entity.getLastname())
+                .username(entity.getUsername())
+                .email(entity.getEmail())
+                .phone(entity.getPhone())
+                .active(entity.isActive())
+                .build();
+        if (entity.getAddress() != null) {
+            user.setAddress(AddressService.convertEntityToDto(entity.getAddress()));
+        }
+        return user;
+    }
+
+    public User convertDtoToEntity(UserDto dto) {
+        User user = User.builder()
+                .firstname(dto.getFirstname())
+                .lastname(dto.getLastname())
+                .phone(dto.getPhone())
+                .username(dto.getUsername())
+                .email(dto.getEmail())
+                .active(dto.isActive())
+                .build();
+        if (dto.getAddress() != null) {
+            Address address = AddressService.convertDtoToEntity(dto.getAddress());
+            addressRepository.save(address);
+            user.setAddress(address);
+        }
+        return user;
+    }
 }
 

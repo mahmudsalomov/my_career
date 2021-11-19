@@ -90,9 +90,7 @@ public class AuthService implements UserDetailsService {
                         Collections.singleton(roleRepository.findById((short) 2).orElseThrow())
                 ))
                 .build());
-
         userRepository.save(user);
-
     }
 
     public void validation(String jwt) {

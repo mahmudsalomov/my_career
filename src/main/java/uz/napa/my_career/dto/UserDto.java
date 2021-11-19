@@ -30,5 +30,5 @@ public class UserDto {
 
     private Set<Role> roles;
 
-    private Set<UserNetworks> userNetworks;
+    private Set<UserNetworks> networks;
 }
