@@ -24,7 +24,7 @@ public class UserController {
 
     @PutMapping()
     public HttpEntity<?> update(@RequestBody UserDto user) {
-        UserDto result = userService.update(user.getId(), user);
+        UserDto result = userService.update(user);
         return ResponseEntity.ok().body(result);
     }
 
@@ -40,11 +40,6 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/log-info")
-    public HttpEntity<?> setNameSurnamePhoneAddress(@RequestBody UserDto user) {
-        userService.setInfo(user);
-        return ResponseEntity.ok().build();
-    }
 
     @GetMapping
     public HttpEntity<?> getUserInfo() {

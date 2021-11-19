@@ -48,14 +48,14 @@ public class UserNetworksService {
         return optional.get();
     }
 
-    public UserNetworks convertDtoToEntity(UserNetworksDto dto) {
+    public static UserNetworks convertDtoToEntity(UserNetworksDto dto) {
         return UserNetworks.builder()
                 .link(dto.getLink())
                 .type(dto.getType())
                 .build();
     }
 
-    public UserNetworksDto convertEntityToDto(UserNetworks entity) {
+    public static UserNetworksDto convertEntityToDto(UserNetworks entity) {
         return UserNetworksDto.builder()
                 .link(entity.getLink())
                 .type(entity.getType())
