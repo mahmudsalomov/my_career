@@ -21,4 +21,5 @@ public class AddressDetail {
     private String street;
 
     private String homeNum;
+
 }

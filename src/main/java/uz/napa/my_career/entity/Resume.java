@@ -1,9 +1,6 @@
 package uz.napa.my_career.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +12,7 @@ import java.util.Set;
 @Table(name = ("resume"))
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Resume {
 
     @Id
@@ -31,7 +29,7 @@ public class Resume {
     private User user;
 
     @Column(name = ("carted_date"))
-    private LocalDateTime cratedDate;
+    private LocalDateTime createdDate;
 
     @Column(name = ("cover_letter"))
     private String coverLetter;

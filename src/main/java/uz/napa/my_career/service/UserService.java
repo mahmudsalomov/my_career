@@ -105,6 +105,7 @@ public class UserService {
             userNetworksRepository.saveAll(userNetworksEntitySet);
             user.setNetworks(userNetworksEntitySet);
         }
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         userRepository.save(user);
     }
 
@@ -139,7 +140,7 @@ public class UserService {
         return optional.get();
     }
 
-    public UserDto convertEntityToDto(User entity) {
+    public static UserDto convertEntityToDto(User entity) {
         return UserDto.builder()
                 .firstname(entity.getFirstname())
                 .lastname(entity.getLastname())
@@ -150,7 +151,7 @@ public class UserService {
                 .build();
     }
 
-    public User convertDtoToEntity(UserDto dto) {
+    public static User convertDtoToEntity(UserDto dto) {
         return User.builder()
                 .firstname(dto.getFirstname())
                 .lastname(dto.getLastname())
@@ -158,7 +159,6 @@ public class UserService {
                 .username(dto.getUsername())
                 .email(dto.getEmail())
                 .active(dto.isActive())
-                .password(passwordEncoder.encode(dto.getPassword()))
                 .build();
     }
 }

@@ -48,7 +48,7 @@ public class ExperienceService {
         return optional.get();
     }
 
-    public Experience convertDtoToEntity(ExperienceDto dto) {
+    public static Experience convertDtoToEntity(ExperienceDto dto) {
         return Experience.builder()
                 .jobName(dto.getJobName())
                 .startDate(dto.getStartDate())
@@ -60,7 +60,7 @@ public class ExperienceService {
                 .build();
     }
 
-    public ExperienceDto convertEntityToDto(Experience entity) {
+    public static ExperienceDto convertEntityToDto(Experience entity) {
         return ExperienceDto.builder()
                 .jobName(entity.getJobName())
                 .startDate(entity.getStartDate())
