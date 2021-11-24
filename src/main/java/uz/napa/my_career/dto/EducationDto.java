@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class EducationDto {
     private Integer id;
     private String schoolName;
-    private String diplomaCode;
+        private String diplomaCode;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private OrganizationDto organization;

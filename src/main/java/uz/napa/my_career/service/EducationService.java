@@ -3,6 +3,7 @@ package uz.napa.my_career.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.ParameterResolutionDelegate;
 import org.springframework.stereotype.Service;
+import uz.napa.my_career.dto.AddressDetail;
 import uz.napa.my_career.dto.EducationDto;
 import uz.napa.my_career.dto.OrganizationDto;
 import uz.napa.my_career.entity.Address;
@@ -29,12 +30,13 @@ public class EducationService {
         Education entity = convertDtoToEntity(dto);
         if (dto.getOrganization() != null) {
             Organization organizationEntity = OrganizationService.convertDtoToEntity(dto.getOrganization());
-            organizationRepository.save(organizationEntity);
             if (dto.getOrganization().getAddress() != null) {
                 Address addressEntity = AddressService.convertDtoToEntity(dto.getOrganization().getAddress());
+                organizationEntity.setAddress(addressEntity);
                 addressRepository.save(addressEntity);
             }
             entity.setOrganization(organizationEntity);
+            organizationRepository.save(organizationEntity);
         }
         educationRepository.save(entity);
         dto.setId(entity.getId());
@@ -43,14 +45,33 @@ public class EducationService {
 
     public EducationDto get(Integer id) {
         Education entity = getEntity(id);
-        return convertEntityToDto(entity);
+        EducationDto educationDto = convertEntityToDto(entity);
+        if (entity.getOrganization() != null) {
+            OrganizationDto organization = OrganizationService.convertEntityToDto(entity.getOrganization());
+            if (entity.getOrganization().getAddress() != null) {
+                AddressDetail addressDetail = AddressService.convertEntityToDto(entity.getOrganization().getAddress());
+                organization.setAddress(addressDetail);
+            }
+            educationDto.setOrganization(organization);
+        }
+        return educationDto;
     }
 
     public EducationDto update(EducationDto dto) {
-        Education education = getEntity(dto.getId());
-        education = convertDtoToEntity(dto);
-        education.setId(dto.getId());
-        educationRepository.save(education);
+        Education entity = convertDtoToEntity(dto);
+        entity.setId(dto.getId());
+        if (dto.getOrganization() != null) {
+            Organization organizationEntity = OrganizationService.convertDtoToEntity(dto.getOrganization());
+            if (dto.getOrganization().getAddress() != null) {
+                Address addressEntity = AddressService.convertDtoToEntity(dto.getOrganization().getAddress());
+                organizationEntity.setAddress(addressEntity);
+                addressRepository.save(addressEntity);
+            }
+            entity.setOrganization(organizationEntity);
+            organizationRepository.save(organizationEntity);
+        }
+        educationRepository.save(entity);
+        dto.setId(entity.getId());
         return dto;
     }
 

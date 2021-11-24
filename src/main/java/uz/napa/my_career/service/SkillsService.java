@@ -15,11 +15,16 @@ import java.util.Optional;
 public class SkillsService {
     @Autowired
     private SkillRepository skillRepository;
-
+    @Autowired
+    private SkillCategoryRepository skillCategoryRepository;
 
     //Main functions
     public SkillsDto create(SkillsDto dto) {
         Skills skills = convertDtoToEntity(dto);
+        if (dto.getCategory() != null) {
+            skillCategoryRepository.save(dto.getCategory());
+            skills.setCategory(dto.getCategory());
+        }
         skillRepository.save(skills);
         dto.setId(skills.getId());
         return dto;
@@ -27,13 +32,22 @@ public class SkillsService {
 
     public SkillsDto get(Integer id) {
         Skills skills = getEntity(id);
-        return convertEntityToDto(skills);
+        SkillsDto skillsDto = convertEntityToDto(skills);
+        if (skills.getCategory() != null) {
+            skillsDto.setCategory(skills.getCategory());
+        }
+        return skillsDto;
     }
 
     public SkillsDto update(SkillsDto dto) {
-        Skills skills = getEntity(dto.getId());
-        skills = convertDtoToEntity(dto);
+        Skills skills = convertDtoToEntity(dto);
+        skills.setId(dto.getId());
+        if (dto.getCategory() != null) {
+            skillCategoryRepository.save(dto.getCategory());
+            skills.setCategory(dto.getCategory());
+        }
         skillRepository.save(skills);
+        dto.setId(skills.getId());
         return dto;
     }
 
