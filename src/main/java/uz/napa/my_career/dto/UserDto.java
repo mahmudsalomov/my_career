@@ -25,10 +25,13 @@ public class UserDto {
     private String phone;
 
     private AddressDetail address;
+    private Integer addressId;
 
     private boolean active;
 
     private Set<Role> roles;
+    private Set<Short> rolesId;
 
     private Set<UserNetworksDto> networks;
+    private Set<Integer> networksId;
 }

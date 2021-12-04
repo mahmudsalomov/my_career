@@ -23,6 +23,8 @@ public class ExperienceService {
     private AddressRepository addressRepository;
     @Autowired
     private OrganizationRepository organizationRepository;
+    @Autowired
+    private OrganizationService organizationService;
 
     public ExperienceDto get(Integer id) {
         Experience experience = getEntity(id);
@@ -49,6 +51,9 @@ public class ExperienceService {
             }
             organizationRepository.save(organization);
             experience.setOrganization(organization);
+        } else if (dto.getOrganizationId() != null) {
+            Organization organization = organizationService.getEntity(dto.getOrganizationId());
+            experience.setOrganization(organization);
         }
         experienceRepository.save(experience);
         dto.setId(experience.getId());
@@ -67,6 +72,9 @@ public class ExperienceService {
                 organization.setAddress(address);
             }
             organizationRepository.save(organization);
+            experience.setOrganization(organization);
+        } else if (dto.getOrganizationId() != null) {
+            Organization organization = organizationService.getEntity(dto.getOrganizationId());
             experience.setOrganization(organization);
         }
         experienceRepository.save(experience);
@@ -92,7 +100,6 @@ public class ExperienceService {
                 .jobName(dto.getJobName())
                 .startDate(dto.getStartDate())
                 .endDate(dto.getEndDate())
-
                 .build();
     }
 

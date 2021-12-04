@@ -13,6 +13,7 @@ import uz.napa.my_career.entity.User;
 import uz.napa.my_career.entity.UserNetworks;
 import uz.napa.my_career.exception.ServerBadRequestException;
 import uz.napa.my_career.repository.AddressRepository;
+import uz.napa.my_career.repository.RoleRepository;
 import uz.napa.my_career.repository.UserNetworksRepository;
 import uz.napa.my_career.repository.UserRepository;
 
@@ -29,7 +30,13 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
     private UserNetworksRepository userNetworksRepository;
+    @Autowired
+    private AddressService addressService;
+    @Autowired
+    private UserNetworksService userNetworksService;
 
     public UserDto get(Long id) {
         User entity = getUserEntity(id);
@@ -63,9 +70,21 @@ public class UserService {
             Address address = AddressService.convertDtoToEntity(dto.getAddress());
             addressRepository.save(address);
             user.setAddress(address);
+        } else if (dto.getAddressId() != null) {
+            Address address = addressService.getAddressEntity(dto.getAddressId());
+            user.setAddress(address);
         }
         if (dto.getRoles() != null) {
             user.setRoles(dto.getRoles());
+        } else if (dto.getRolesId() != null) {
+            Set<Short> rolesId = dto.getRolesId();
+            Set<Role> roleSet = new HashSet<>();
+            rolesId.forEach(roleId -> {
+                if (roleRepository.existsById(roleId)) {
+                    roleSet.add(roleRepository.getById(roleId));
+                }
+            });
+            user.setRoles(roleSet);
         }
         if (dto.getNetworks() != null) {
             Set<UserNetworksDto> userNetworksDtoSet = dto.getNetworks();
@@ -74,6 +93,13 @@ public class UserService {
                 userNetworksEntitySet.add(UserNetworksService.convertDtoToEntity(userDto));
             });
             userNetworksRepository.saveAll(userNetworksEntitySet);
+            user.setNetworks(userNetworksEntitySet);
+        } else if (dto.getNetworksId() != null) {
+            Set<Integer> userNetworksIdSet = dto.getNetworksId();
+            Set<UserNetworks> userNetworksEntitySet = new HashSet<>();
+            userNetworksIdSet.forEach(userId -> {
+                userNetworksEntitySet.add(userNetworksService.getEntity(userId));
+            });
             user.setNetworks(userNetworksEntitySet);
         }
         userRepository.save(user);
@@ -92,6 +118,9 @@ public class UserService {
             Address address = AddressService.convertDtoToEntity(dto.getAddress());
             addressRepository.save(address);
             user.setAddress(address);
+        } else if (dto.getAddressId() != null) {
+            Address address = addressService.getAddressEntity(dto.getAddressId());
+            user.setAddress(address);
         }
         if (dto.getRoles() != null) {
             user.setRoles(dto.getRoles());
@@ -103,6 +132,13 @@ public class UserService {
                 userNetworksEntitySet.add(UserNetworksService.convertDtoToEntity(userDto));
             });
             userNetworksRepository.saveAll(userNetworksEntitySet);
+            user.setNetworks(userNetworksEntitySet);
+        } else if (dto.getNetworksId() != null) {
+            Set<Integer> userNetworksIdSet = dto.getNetworksId();
+            Set<UserNetworks> userNetworksEntitySet = new HashSet<>();
+            userNetworksIdSet.forEach(userId -> {
+                userNetworksEntitySet.add(userNetworksService.getEntity(userId));
+            });
             user.setNetworks(userNetworksEntitySet);
         }
         user.setPassword(passwordEncoder.encode(dto.getPassword()));

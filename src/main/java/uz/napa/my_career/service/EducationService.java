@@ -1,5 +1,6 @@
 package uz.napa.my_career.service;
 
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.ParameterResolutionDelegate;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class EducationService {
     private OrganizationRepository organizationRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private OrganizationService organizationService;
 
     //Main functions
     public EducationDto create(EducationDto dto) {
@@ -37,6 +40,9 @@ public class EducationService {
             }
             entity.setOrganization(organizationEntity);
             organizationRepository.save(organizationEntity);
+        } else if (dto.getOrganizationId() != null) {
+            Organization organization = organizationService.getEntity(dto.getOrganizationId());
+            entity.setOrganization(organization);
         }
         educationRepository.save(entity);
         dto.setId(entity.getId());
@@ -69,6 +75,9 @@ public class EducationService {
             }
             entity.setOrganization(organizationEntity);
             organizationRepository.save(organizationEntity);
+        } else if (dto.getOrganizationId() != null) {
+            Organization organization = organizationService.getEntity(dto.getOrganizationId());
+            entity.setOrganization(organization);
         }
         educationRepository.save(entity);
         dto.setId(entity.getId());

@@ -19,6 +19,8 @@ public class OrganizationService {
     private OrganizationRepository organizationRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private AddressService addressService;
 
     //Main functions
     public OrganizationDto create(OrganizationDto dto) {
@@ -27,6 +29,9 @@ public class OrganizationService {
             Address addressEntity = AddressService.convertDtoToEntity(dto.getAddress());
             organization.setAddress(addressEntity);
             addressRepository.save(addressEntity);
+        } else if (dto.getAddressId() != null) {
+            Address address = addressService.getAddressEntity(dto.getAddressId());
+            organization.setAddress(address);
         }
         organizationRepository.save(organization);
         dto.setId(organization.getId());
@@ -40,6 +45,9 @@ public class OrganizationService {
             Address addressEntity = AddressService.convertDtoToEntity(dto.getAddress());
             organization.setAddress(addressEntity);
             addressRepository.save(addressEntity);
+        } else if (dto.getAddressId() != null) {
+            Address address = addressService.getAddressEntity(dto.getAddressId());
+            organization.setAddress(address);
         }
         organizationRepository.save(organization);
         dto.setId(organization.getId());

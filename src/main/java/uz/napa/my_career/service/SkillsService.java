@@ -17,6 +17,8 @@ public class SkillsService {
     private SkillRepository skillRepository;
     @Autowired
     private SkillCategoryRepository skillCategoryRepository;
+    @Autowired
+    private SkillCategoryService skillCategoryService;
 
     //Main functions
     public SkillsDto create(SkillsDto dto) {
@@ -24,6 +26,8 @@ public class SkillsService {
         if (dto.getCategory() != null) {
             skillCategoryRepository.save(dto.getCategory());
             skills.setCategory(dto.getCategory());
+        } else if (dto.getCategoryId() != null) {
+            skills.setCategory(skillCategoryService.getEntity(dto.getCategoryId()));
         }
         skillRepository.save(skills);
         dto.setId(skills.getId());
@@ -45,6 +49,8 @@ public class SkillsService {
         if (dto.getCategory() != null) {
             skillCategoryRepository.save(dto.getCategory());
             skills.setCategory(dto.getCategory());
+        } else if (dto.getCategoryId() != null) {
+            skills.setCategory(skillCategoryService.getEntity(dto.getCategoryId()));
         }
         skillRepository.save(skills);
         dto.setId(skills.getId());

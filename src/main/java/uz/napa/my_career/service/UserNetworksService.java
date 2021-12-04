@@ -30,6 +30,7 @@ public class UserNetworksService {
     public UserNetworksDto update(UserNetworksDto dto) {
         UserNetworks userNetworks = getEntity(dto.getId());
         userNetworks = convertDtoToEntity(dto);
+        userNetworks.setId(dto.getId());
         userNetworksRepository.save(userNetworks);
         return dto;
     }
