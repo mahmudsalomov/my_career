@@ -4,8 +4,8 @@ spring:
       client:
         registration:
           facebook:
-            clientId: 568311594235815
-            clientSecret: 453d8855e3282a991bc19a0cc9950cec
+            clientId: 155354440132464
+            clientSecret: 10802bbe59203ce0859a13fdf5bcc6e9
           github:
             clientId: 79a8365997638281ca47
             clientSecret: 043956a4e77c629753446199c4dcc2b734073899

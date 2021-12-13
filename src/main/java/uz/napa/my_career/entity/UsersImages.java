@@ -1,7 +1,6 @@
 package uz.napa.my_career.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 
