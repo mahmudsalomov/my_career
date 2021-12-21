@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -13,21 +14,20 @@ import javax.validation.constraints.NotEmpty;
 public class AddressDetail {
     private Integer id;
 
-    @NotBlank
+    @NotEmpty
     private String country;
 
-    @NotEmpty
-    private String region;
+    @NotNull
+    private String region_id;
 
-    @NotBlank
-    private String city;
+    @NotNull
+    private String district_id;
 
-    @NotEmpty
-    private String district;
+    @NotNull
+    private String quarters;
 
     @NotBlank
     private String street;
-
 
     @NotBlank
     private String homeNum;

@@ -17,11 +17,11 @@ public class Address {
 
     private String country;
 
-    private String region;
+    private String region_id;
 
-    private String city;
+    private String district_id;
 
-    private String district;
+    private  String quarters;
 
     private String street;
 

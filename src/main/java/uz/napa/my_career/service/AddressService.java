@@ -50,9 +50,8 @@ public class AddressService {
     public static AddressDetail convertEntityToDto(Address entity) {
         return AddressDetail.builder()
                 .country(entity.getCountry())
-                .city(entity.getCity())
-                .region(entity.getRegion())
-                .district(entity.getDistrict())
+                .region_id(entity.getRegion_id())
+                .district_id(entity.getDistrict_id())
                 .street(entity.getStreet())
                 .homeNum(entity.getHomeNum())
                 .build();
@@ -61,9 +60,8 @@ public class AddressService {
     public static Address convertDtoToEntity(AddressDetail dto) {
         return Address.builder()
                 .country(dto.getCountry())
-                .city(dto.getCity())
-                .region(dto.getRegion())
-                .district(dto.getDistrict())
+                .region_id(dto.getRegion_id())
+                .district_id(dto.getDistrict_id())
                 .street(dto.getStreet())
                 .homeNum(dto.getHomeNum())
                 .build();
