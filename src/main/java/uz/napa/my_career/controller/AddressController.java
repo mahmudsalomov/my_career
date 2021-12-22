@@ -5,9 +5,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.napa.my_career.dto.AddressDetail;
+import uz.napa.my_career.entity.Districts;
+import uz.napa.my_career.entity.Quarters;
+import uz.napa.my_career.entity.Regions;
 import uz.napa.my_career.service.AddressService;
 
 import java.net.http.HttpRequest;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/address")
@@ -38,5 +43,24 @@ public class AddressController {
         addressService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/getRegions")
+    public HttpEntity<?> getRegions(){
+        List<Regions> result = addressService.getRegions();
+        return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/getDistricts/{id}")
+    public HttpEntity<?> getDistricts(@PathVariable("id")Integer id){
+        List<Districts> result = addressService.getDistricts(id);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/getQuarters/{id}")
+    public HttpEntity<?> getQuarters(@PathVariable("id")Integer id){
+        List<Quarters> result = addressService.getQuarters(id);
+        return ResponseEntity.ok().body(result);
+    }
+
 
 }

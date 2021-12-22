@@ -4,15 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.napa.my_career.dto.AddressDetail;
 import uz.napa.my_career.entity.Address;
+import uz.napa.my_career.entity.Districts;
+import uz.napa.my_career.entity.Quarters;
+import uz.napa.my_career.entity.Regions;
 import uz.napa.my_career.exception.ServerBadRequestException;
 import uz.napa.my_career.repository.AddressRepository;
+import uz.napa.my_career.repository.DistrictsRepository;
+import uz.napa.my_career.repository.QuartersRepository;
+import uz.napa.my_career.repository.RegionsRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
-public class AddressService {
+public class AddressService{
     @Autowired
     private AddressRepository repository;
+    @Autowired
+    private RegionsRepository regionsRepository;
+    @Autowired
+    private DistrictsRepository districtsRepository;
+    @Autowired
+    private QuartersRepository quartersRepository;
 
     //Get address DTO by id
     public AddressDetail get(Integer id) {
@@ -41,6 +55,21 @@ public class AddressService {
     public void delete(Integer id) {
         Address address = getAddressEntity(id);
         repository.delete(address);
+    }
+
+    // Get Region from DB
+    public List<Regions> getRegions() {
+        return regionsRepository.findAll();
+    }
+
+    // Get District from Region Id
+    public List<Districts> getDistricts(Integer id){
+        return districtsRepository.findAllByRegionId(id);
+    }
+
+    //Get Quarters from District Id
+    public List<Quarters> getQuarters(Integer id){
+        return quartersRepository.findAllByDistrictId(id);
     }
 
 
@@ -74,4 +103,6 @@ public class AddressService {
         }
         return optional.get();
     }
+
+
 }
