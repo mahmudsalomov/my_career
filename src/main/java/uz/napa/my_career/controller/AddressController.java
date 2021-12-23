@@ -59,7 +59,7 @@ public class AddressController {
     @GetMapping("/getQuarters/{id}")
     public HttpEntity<?> getQuarters(@PathVariable("id")Integer id){
         List<Quarters> result = addressService.getQuarters(id);
-        return ResponseEntity.ok().body(result);
+        return ResponseEntity.ok(result);
     }
 
 
